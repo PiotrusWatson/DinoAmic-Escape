@@ -103,7 +103,7 @@ public class SetupClass extends BasicGame {
 		}
 
 		timer.update(delta);
-
+		met.update(delta);
 
 	}
 
