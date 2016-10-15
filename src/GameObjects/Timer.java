@@ -24,9 +24,9 @@ public class Timer extends GameObject {
 		g.fillRect(64, 2, width-128, 64);
 		if (time > 0){
 		g.setColor(Color.green);
-		g.fillRect(64, 2, time/35, 64);}
+		g.fillRect(64, 2, time/35, 64);
 		g.setColor(Color.white);
-		g.drawString(Integer.toString(time),500,20);
+		g.drawString(Integer.toString(time),500,20);}
 	}
 	
 	
