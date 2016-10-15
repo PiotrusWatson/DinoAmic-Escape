@@ -105,7 +105,7 @@ public class SetupClass extends BasicGame {
 
 		if (two_player){
 		player2.render(container, g);}
-		timer.render(g);
+		timer.render(g, windowWidth); //window width needed for timer bar
 		block.render(container, g);
 		for(int i = 0; i < grid.length;i++){
 			for(int j = 0; j < grid[0].length; j++){
