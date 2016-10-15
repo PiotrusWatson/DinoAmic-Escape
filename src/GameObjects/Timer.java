@@ -20,11 +20,13 @@ public class Timer extends GameObject {
 		return time;
 	}
 	public void render(Graphics g, int width){
-		g.drawString(Integer.toString(time),0,0);
 		g.setColor(Color.red);
 		g.fillRect(64, 2, width-128, 64);
+		if (time > 0){
 		g.setColor(Color.green);
-		g.fillRect(64, 2, time/35, 64);
+		g.fillRect(64, 2, time/35, 64);}
+		g.setColor(Color.white);
+		g.drawString(Integer.toString(time),500,20);
 	}
 	
 	
