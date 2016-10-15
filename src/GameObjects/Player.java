@@ -36,30 +36,19 @@ public class Player extends GameObject{
 	public void moveLeft(){
 		facing = 270;
 		this.xCoord -= moveSpeed;
-		if(xCoord<64){
-			xCoord = 64;
-		}
 	}
-	public void moveRight(int windowWidth){
+	public void moveRight(){
 		facing = 90;
 		this.xCoord += moveSpeed;
-		if(xCoord>windowWidth-128){
-			xCoord = windowWidth-128;
-		}
 	}
 	public void moveUp(){
 		facing = 0;
 		this.yCoord -= moveSpeed;
-		if(yCoord<64){
-			yCoord = 64;
-		}
 	}
-	public void moveDown(int windowHeight){
+	public void moveDown(){
 		facing = 180;
 		this.yCoord += moveSpeed;
-		if(yCoord>windowHeight -128){
-			yCoord = windowHeight -128;
-		}
+
 	}
 	public void render(GameContainer container, Graphics g) throws SlickException{
 		dinoAnimation.getCurrentFrame().setRotation(facing);
@@ -67,5 +56,6 @@ public class Player extends GameObject{
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 }

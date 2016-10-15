@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.Image;
 
+
 public class Block extends GameObject{
 	
 	private SpriteSheet blockSprite;
@@ -14,6 +15,7 @@ public class Block extends GameObject{
 	private Image blockStatic;
 	public int health;
 	public Image floor;
+	
 	
 	public Block(int xCoord, int yCoord, byte layer) throws SlickException{
 		super(xCoord, yCoord, layer);
