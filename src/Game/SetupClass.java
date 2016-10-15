@@ -28,13 +28,13 @@ public class SetupClass extends BasicGame {
 	 */
 	private static int windowWidth = 1000;
 	private static int windowHeight = 700;
-	private static boolean fullScreen = false; // set to true for two players
+	private static boolean fullScreen = false;
 
 
 	private Timer timer;
 
 
-	private static boolean two_player = true;
+	private static boolean two_player = false; // set to true for two players
 	
 	public SetupClass(String title) {
 		super(title);
