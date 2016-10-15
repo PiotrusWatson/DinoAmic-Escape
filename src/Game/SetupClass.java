@@ -102,6 +102,13 @@ public class SetupClass extends BasicGame {
 		if(timer.getTime() == 0 || timer.getTime() < 0){
 			
 		}
+		
+		if(met.getTime() > 1000){
+			grid[met.getY()][met.getX()] = 1;
+			if(met.getY() == player.getArrayPosY() && met.getX() == player.getArrayPosX()){
+				
+			}
+		}
 
 		met.update(delta);
 
@@ -131,8 +138,8 @@ public class SetupClass extends BasicGame {
 				if (grid[i][j] == 2){
 					isRock = true;
 					if((i == met.getY()) && j == met.getX()){
-						grid[i][j] = 0;
-						isRock = false;		
+						//grid[i][j] = 1;
+						//isRock = false;		
 					}
 				}
 				block.render(container, g,isRock);

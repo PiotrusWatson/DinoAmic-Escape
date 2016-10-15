@@ -84,5 +84,8 @@ public class Metiorite extends GameObject {
 	public int getY(){
 		return yIndex;
 	}
+	public int getTime(){
+		return time;
+	}
 
 }
