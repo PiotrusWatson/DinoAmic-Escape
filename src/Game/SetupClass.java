@@ -1,5 +1,6 @@
 package Game;
 
+
 import java.awt.event.InputEvent;
 
 import org.newdawn.slick.Animation;
@@ -12,48 +13,133 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import GameObjects.Player;
+import GameObjects.GameObject;
+import GameObjects.Metiorite;
+import GameObjects.Timer;
+import levelGen.MapGrid;
+import GameObjects.Block;
+
+
 
 public class SetupClass extends BasicGame {
+	public Player player;
+	public Block block;
+	public Player player2;
+	public Metiorite met;
+	public MapGrid map;
+	public int[][] grid;
+	public static int fps = 60;
+	/*
+	 * windowWidth = width of the window
+	 * windowHeight = height of the window
+	 * fullScreen if true makes game fullScreen
+	 */
 
-	private int y;
-	private int x;
-	private SpriteSheet dinoSheet;
-	private Animation dinoAnimation;
+	private static int windowWidth = 1000;
+	private static int windowHeight = 700;
+	private static boolean fullScreen = false;
+
+
+
+
+	private Timer timer;
+	private static boolean two_player = false; // set to true for two players
+
+	
 	public SetupClass(String title) {
 		super(title);
 		
 	}
-	
-
+	@Override
 	public void init(GameContainer container) throws SlickException {
-		dinoSheet = new SpriteSheet("src/res/DINODEANWeaponPNG.png", 64, 64);
-		dinoAnimation = new Animation(dinoSheet, 100);
-	}
 
+		player = new Player(1, 2, (byte) 3);
+		player2 = new Player(5, 6, (byte)3);
+		player.init(container);
+		player2.init(container);
+		timer = new Timer();
+		met = new Metiorite(0);
+		block = new Block(1, 2, (byte)3);
+		block.init(container);
+		map=new MapGrid(((windowWidth/64)-1),((windowHeight/64)-1));
+		map.generateGrid(2);
+		grid = map.getGrid();
+		System.out.print(map);
+		
+	}
+	
+	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
 
 		Input input = container.getInput();
 		if (input.isKeyDown(Input.KEY_S)){
-			y += 1;
+			player.moveDown(windowHeight);
 		}
-		if (input.isKeyDown(Input.KEY_A)){
-			x -= 1;
+		else if (input.isKeyDown(Input.KEY_A)){
+			player.moveLeft();
+			
 		}
-		if (input.isKeyDown(Input.KEY_D)){
-			x += 1;
+		else if (input.isKeyDown(Input.KEY_D)){
+			
+			player.moveRight(windowWidth);
+			
 		}
-		if (input.isKeyDown(Input.KEY_W)){
-			y -= 1;
+		else if (input.isKeyDown(Input.KEY_W)){
+			player.moveUp();
+			
 		}
+
+		
+		if (input.isKeyDown(Input.KEY_RIGHT)){
+			player2.moveRight(windowWidth);
+		}
+		else if (input.isKeyDown(Input.KEY_LEFT)){
+			player2.moveLeft();
+		}
+		else if (input.isKeyDown(Input.KEY_UP)){
+			player2.moveUp();
+		}
+		else if (input.isKeyDown(Input.KEY_DOWN)){
+			player2.moveDown(windowHeight);
+		}
+
+		timer.update(delta);
+
 
 	}
 
-	public void render(GameContainer container, Graphics arg1) throws SlickException {
-		dinoAnimation.draw(this.x, this.y);
+	public void render(GameContainer container, Graphics g) throws SlickException {
+		player.render(container, g);
+
+		if (two_player){
+		player2.render(container, g);}
+		timer.render(g, windowWidth); //window width needed for timer bar
+		block.render(container, g);
+		
+		
+
+		met.render(container,g,(int)(windowWidth/64),(int)(windowHeight/64));
+
+		
+
+		for(int i = 0; i < grid.length;i++){
+			for(int j = 0; j < grid[0].length; j++){
+				if (grid[i][j] == 2){
+					block.yCoord = (i+1)*64;
+					block.xCoord = (j+1)*64;
+					block.render(container, g);
+				}
+			}
+		}
+		
+
+
 	}
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new SetupClass("Setup Test"));
-		app.setDisplayMode(1000, 700, false);
+		app.setTargetFrameRate(fps);
+		app.setDisplayMode(windowWidth, windowHeight, fullScreen);
 		app.start();
 		
 	}
