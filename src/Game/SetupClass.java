@@ -21,6 +21,7 @@ import GameObjects.Metiorite;
 import GameObjects.Timer;
 import levelGen.MapGrid;
 import GameObjects.Block;
+import GameObjects.ExitTile;
 //import org.newdawn.slick.geom.Rectangle;
 
 
@@ -33,6 +34,7 @@ public class SetupClass extends BasicGame {
 	public MapGrid map;
 	public int[][] grid;
 	public static int fps = 1000;
+	public ExitTile exit;
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
@@ -66,6 +68,8 @@ public class SetupClass extends BasicGame {
 		map=new MapGrid(((windowWidth/64)-1),((windowHeight/64)-1));
 		map.generateGrid(2);
 		grid = map.getGrid();
+		exit = new ExitTile(1, 2, (byte)3);
+		exit.init(container);
 		
 		
 	}
@@ -106,6 +110,13 @@ public class SetupClass extends BasicGame {
 		if(timer.getTime() == 0 || timer.getTime() < 0){
 			
 		}
+		
+		if(met.getTime() > 1000){
+			grid[met.getY()][met.getX()] = 1;
+			if(met.getY() == player.getArrayPosY() && met.getX() == player.getArrayPosX()){
+				
+			}
+		}
 
 		met.update(delta);
 
@@ -119,9 +130,6 @@ public class SetupClass extends BasicGame {
 		timer.render(g, windowWidth); //window width needed for timer bar
 		block.render(container, g,false);
 		
-		//for(int row=0;row<(int)(WindowHeight/64);row++){
-			//for(int col=0;col<(int)(wind))
-		//}
 		
 
 
@@ -134,20 +142,23 @@ public class SetupClass extends BasicGame {
 				block.xCoord = (j+1)*64;
 				if (grid[i][j] == 2){
 					isRock = true;
-					//System.out.println(met.getX());
-					//System.out.println(i + " " + met.getX() + " " + j + " " + met.getY());
 					if((i == met.getY()) && j == met.getX()){
-						grid[i][j] = 0;
+						grid[i][j] = 1;
 						isRock = false;
-						//System.out.println("_-----------------------------------------------------------------------------------");
+
 					}
 				}
 				block.render(container, g,isRock);
 				isRock = false;
+				if(grid[i][j] == 0){
+					exit.yCoord = (i+1)*64;
+					exit.xCoord = (j+1)*64;
+					exit.render(container, g);
+				}
 			}
 		}
 		player.render(container, g);
-		met.render(container,g,grid[0].length,grid.length);
+		met.render(container,g,grid[0].length,grid.length,player.getArrayPosX(),player.getArrayPosY());
 
 
 	}
