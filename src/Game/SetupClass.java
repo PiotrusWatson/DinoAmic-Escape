@@ -39,8 +39,9 @@ public class SetupClass extends BasicGame {
 	private static int windowWidth = 1000;
 	private static int windowHeight = 700;
 	private static boolean fullScreen = false;
-
-
+	
+	private static int noRows = ((int)(windowHeight/64)) - 2;
+	private static int noCols = ((int)(windowWidth/64)) - 2;
 
 
 	private Timer timer;
@@ -117,9 +118,12 @@ public class SetupClass extends BasicGame {
 		timer.render(g, windowWidth); //window width needed for timer bar
 		block.render(container, g);
 		
+		//for(int row=0;row<(int)(WindowHeight/64);row++){
+			//for(int col=0;col<(int)(wind))
+		//}
 		
 
-		met.render(container,g,(int)(windowWidth/64),(int)(windowHeight/64));
+		met.render(container,g,noCols,noRows);
 
 		
 

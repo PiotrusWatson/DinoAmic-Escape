@@ -37,7 +37,7 @@ public class Metiorite extends GameObject {
 	
 	public void render(GameContainer container, Graphics g,int noCol, int noRows) throws SlickException{
 
-
+		System.out.println(noCol + " " + noRows);
 		img = new Image("src/res/met.png");
 		
 		if(isMet){
@@ -46,8 +46,9 @@ public class Metiorite extends GameObject {
 		
 		int random = (int)(Math.random()*100);
 		if(random == 0){
-			x = (int)((Math.random()*noCol)*64);
-			y = (int)((Math.random()* noRows)*64);
+			x = 64 + ((int)(Math.random()*noCol)*64);
+			y = 64 + ((int)(Math.random()* noRows)*64);
+			System.out.println(x + " " + y);
 			img.draw(x,y);
 			isMet = true;
 		} else if(isMet){
