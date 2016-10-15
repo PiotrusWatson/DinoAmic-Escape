@@ -3,6 +3,7 @@ package GameObjects;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
@@ -10,6 +11,8 @@ import org.newdawn.slick.SpriteSheet;
 public class Player extends GameObject{
 	private static int x = 64;
 	private static int y = 64;
+	private int facing = 90;
+	private static int moveSpeed = 1;
 	
 	private SpriteSheet dinoSprite;
 	private Animation dinoAnimation;
@@ -31,18 +34,23 @@ public class Player extends GameObject{
 	}
 	
 	public void moveLeft(){
-		this.xCoord -= 1;
+		facing = 270;
+		this.xCoord -= moveSpeed;
 	}
 	public void moveRight(){
-		this.xCoord += 1;
+		facing = 90;
+		this.xCoord += moveSpeed;
 	}
 	public void moveUp(){
-		this.yCoord -= 1;
+		facing = 0;
+		this.yCoord -= moveSpeed;
 	}
 	public void moveDown(){
-		this.yCoord += 1;
+		facing = 180;
+		this.yCoord += moveSpeed;
 	}
 	public void render(GameContainer container, Graphics g) throws SlickException{
+		dinoAnimation.getCurrentFrame().setRotation(facing);
 		dinoAnimation.draw(this.xCoord, this.yCoord);
 		// TODO Auto-generated method stub
 		
