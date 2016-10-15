@@ -32,9 +32,9 @@ public class SetupClass extends BasicGame {
 
 
 	private Timer timer;
-	private int time;
 
-	private static boolean two_player = false;
+
+	private static boolean two_player = true;
 	
 	public SetupClass(String title) {
 		super(title);
@@ -66,6 +66,7 @@ public class SetupClass extends BasicGame {
 		else if (input.isKeyDown(Input.KEY_W)){
 			player.moveUp();
 		}
+
 		
 		if (input.isKeyDown(Input.KEY_RIGHT)){
 			player2.moveRight();
@@ -79,15 +80,19 @@ public class SetupClass extends BasicGame {
 		else if (input.isKeyDown(Input.KEY_DOWN)){
 			player2.moveDown();
 		}
-		time = timer.update(delta);
+
+		timer.update(delta);
+
 
 	}
 
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		player.render(container, g);
+
 		if (two_player){
 		player2.render(container, g);}
-		g.drawString(Integer.toString(time),0,0);
+		timer.render(g);
+
 
 
 	}
