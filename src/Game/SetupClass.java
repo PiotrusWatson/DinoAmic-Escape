@@ -34,8 +34,8 @@ public class SetupClass extends BasicGame {
 	 * windowHeight = height of the window
 	 * fullScreen if true makes game fullScreen
 	 */
-	private static int windowWidth = 1920;
-	private static int windowHeight = 1080;
+	private static int windowWidth = 800;
+	private static int windowHeight = 600;
 	private static boolean fullScreen = false; 
 
 
@@ -110,8 +110,7 @@ public class SetupClass extends BasicGame {
 		timer.render(g);
 		block.render(container, g);
 
-		met.render(g,timer.getTime());
-		//g.drawString(Integer.toString(time),0,0);
+		met.render(container,g,timer.getTime());
 
 		for(int i = 0; i < grid.length;i++){
 			for(int j = 0; j < grid[0].length; j++){
