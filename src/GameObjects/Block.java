@@ -30,7 +30,7 @@ public class Block extends GameObject{
 		}
 	
 	public void render(GameContainer container, Graphics g, boolean isRock){
-		//System.out.println(this.xCoord + " " + this.yCoord);
+
 		floor.draw((float)this.xCoord, (float)this.yCoord);
 		if(isRock){
 			blockStatic.draw((float)this.xCoord, (float)this.yCoord);			

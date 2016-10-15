@@ -80,44 +80,22 @@ public class SetupClass extends BasicGame {
 		}
 
 		Input input = container.getInput();
-		if (input.isKeyDown(Input.KEY_S)){
+		if (input.isKeyPressed(Input.KEY_S)){
 			player.moveDown(grid);
 		}
-		else if (input.isKeyDown(Input.KEY_A)){
+		else if (input.isKeyPressed(Input.KEY_A)){
 			player.moveLeft();
 			
 		}
-		else if (input.isKeyDown(Input.KEY_D)){
+		else if (input.isKeyPressed(Input.KEY_D)){
 			
-			player.moveRight(grid);
+			player.moveRight(grid, block);
 			
 		}
-		else if (input.isKeyDown(Input.KEY_W)){
+		else if (input.isKeyPressed(Input.KEY_W)){
 			player.moveUp();
 			
 		}
-
-		
-		if (input.isKeyDown(Input.KEY_RIGHT)){
-			player2.moveRight(grid);
-		}
-		else if (input.isKeyDown(Input.KEY_LEFT)){
-			player2.moveLeft();
-		}
-		else if (input.isKeyDown(Input.KEY_UP)){
-			player2.moveUp();
-		}
-		else if (input.isKeyDown(Input.KEY_DOWN)){
-			player2.moveDown(grid);
-		}
-		
-		for(int i = 0; i < grid.length;i++){
-			for(int j = 0; j < grid[0].length; j++){
-				if (grid[i][j] == 2){
-					block.yCoord = (i+1)*64;
-					block.xCoord = (j+1)*64;
-					//System.out.println(player.intersects(block));
-					}}}
 
 		timer.update(delta);
 		
