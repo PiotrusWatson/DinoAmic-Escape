@@ -59,18 +59,21 @@ public class Player extends GameObject{
 			if (isAllowedRight(grid, block)){
 				this.xCoord += moveSpeed;}
 		
-		System.out.println(isAllowedRight(grid, block));}
+		}
 	}
-	public void moveUp(){
+	public void moveUp(int[][]grid, Block block){
 		facing = 0;
 		if (this.yCoord > 64){
-		this.yCoord -= moveSpeed;}
+			if(isAllowedUp(grid, block))
+				this.yCoord -= moveSpeed;}
 
 	}
-	public void moveDown(int[][] grid){
+	public void moveDown(int[][] grid, Block block){
 		facing = 180;
 		if(yCoord < (grid.length)*64){
-			this.yCoord += moveSpeed;
+			if(isAllowedDown(grid, block)){
+				this.yCoord += moveSpeed;
+			}
 		}
 
 	}
@@ -104,7 +107,8 @@ public class Player extends GameObject{
 			}
 		}
 		return allowed;
-	}/*
+	}
+	
 	public boolean isAllowedUp(int[][] grid, Block block){
 		boolean allowed = true;
 		for (int i = 0; i < grid.length; i++){
@@ -112,7 +116,7 @@ public class Player extends GameObject{
 				block.yCoord = (i+1)*64;
 				block.xCoord = (j+1)*64;
 				if (grid[i][j] == 2){
-					if ((this.xCoord - 64 >= block.xCoord + 64) && (this.yCoord >= block.yCoord + 64 || this.yCoord + 64 >= block.yCoord)){
+					if ((this.xCoord  == block.xCoord)&& (this.yCoord -64 == block.yCoord)){
 						allowed = false;
 					}
 				}
@@ -120,6 +124,7 @@ public class Player extends GameObject{
 		}
 		return allowed;
 	}
+	
 	public boolean isAllowedDown(int[][] grid, Block block){
 		boolean allowed = true;
 		for (int i = 0; i < grid.length; i++){
@@ -127,14 +132,14 @@ public class Player extends GameObject{
 				block.yCoord = (i+1)*64;
 				block.xCoord = (j+1)*64;
 				if (grid[i][j] == 2){
-					if ((this.xCoord + 64 >= block.xCoord || this.xCoord) && (this.yCoord >= block.yCoord + 64 || this.yCoord + 64 >= block.yCoord)){
+					if ((this.xCoord   == block.xCoord)&& (this.yCoord +64 == block.yCoord)){
 						allowed = false;
 					}
 				}
 			}
 		}
 		return allowed;
-	}*/
+	}
 	public void render(GameContainer container, Graphics g) throws SlickException{
 		WalkAnimation.getCurrentFrame().setRotation(facing);
 		WalkAnimation.draw(this.xCoord, this.yCoord);
