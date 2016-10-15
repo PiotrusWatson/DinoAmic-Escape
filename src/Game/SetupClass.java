@@ -13,12 +13,15 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import com.sun.javafx.geom.Rectangle;
+
 import GameObjects.Player;
 import GameObjects.GameObject;
 import GameObjects.Metiorite;
 import GameObjects.Timer;
 import levelGen.MapGrid;
 import GameObjects.Block;
+//import org.newdawn.slick.geom.Rectangle;
 
 
 
@@ -69,6 +72,9 @@ public class SetupClass extends BasicGame {
 	
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
+		
+		
+		
 		if(timer.getTime()<= 0){
 			System.exit(0);
 		}

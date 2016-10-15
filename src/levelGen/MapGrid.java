@@ -57,12 +57,13 @@ public class MapGrid {
 		return "Grid height: " + grid.length + " Grid Length: " + grid[0].length + " array: " + array;
 	}
 	
+	/*
 	public static void main(String[] args){
 		MapGrid map = new MapGrid(4,4);
 		map.generateGrid(4);
 		System.out.println(map);
 	}
-	
+	*/
 	
 
 	public int[][] getGrid() {
