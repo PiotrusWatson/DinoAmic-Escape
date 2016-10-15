@@ -10,21 +10,30 @@ import org.newdawn.slick.Image;
 
 public class Metiorite extends GameObject {
 	Image img;
-	
+	int rate;
+	int[] ranArray;
 	
 	public void init(GameContainer container) throws SlickException{
-		img = new Image("res/myimage.png");
-		
+		img = new Image("src/res/floor.png");
 	}
 
-	public Metiorite(int xCoord, int yCoord, byte layer) {
-		super(xCoord, yCoord, layer);
-		this.layer = 6;
+	public Metiorite(int difficulty) {
+		super(0, 0, (byte)0);
+		rate = difficulty + 10;
+		ranArray = new int[rate];
+		for(int i=0;i<rate;i++){
+			ranArray[i] = (int)(Math.random() * 100);
+		}
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void render(Graphics g){
-		img.draw(50,50);
+	public void render(Graphics g,int time){
+		for(int i=0;i<rate;i++){
+			if(time > (ranArray[i] * 10) && time < ((ranArray[i] * 10) - 10)){
+				img.draw(time,time);
+			}
+		}
+
 	}
 
 }

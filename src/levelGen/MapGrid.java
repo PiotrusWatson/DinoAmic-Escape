@@ -63,7 +63,8 @@ public class MapGrid {
 		map.generateGrid(4);
 		System.out.println(map);
 	}
-
+	
+	
 
 	public int[][] getGrid() {
 		return grid;
