@@ -62,7 +62,7 @@ public class SetupClass extends BasicGame {
 		met = new Metiorite(0);
 		block = new Block(1, 2, (byte)3);
 		block.init(container);
-		map=new MapGrid(100,100);
+		map=new MapGrid(((windowWidth/64)-1),((windowHeight/64)-1));
 		map.generateGrid(2);
 		grid = map.getGrid();
 		System.out.print(map);
@@ -74,21 +74,25 @@ public class SetupClass extends BasicGame {
 
 		Input input = container.getInput();
 		if (input.isKeyDown(Input.KEY_S)){
-			player.moveDown();
+			player.moveDown(windowHeight);
 		}
 		else if (input.isKeyDown(Input.KEY_A)){
 			player.moveLeft();
+			
 		}
 		else if (input.isKeyDown(Input.KEY_D)){
-			player.moveRight();
+			
+			player.moveRight(windowWidth);
+			
 		}
 		else if (input.isKeyDown(Input.KEY_W)){
 			player.moveUp();
+			
 		}
 
 		
 		if (input.isKeyDown(Input.KEY_RIGHT)){
-			player2.moveRight();
+			player2.moveRight(windowWidth);
 		}
 		else if (input.isKeyDown(Input.KEY_LEFT)){
 			player2.moveLeft();
@@ -97,7 +101,7 @@ public class SetupClass extends BasicGame {
 			player2.moveUp();
 		}
 		else if (input.isKeyDown(Input.KEY_DOWN)){
-			player2.moveDown();
+			player2.moveDown(windowHeight);
 		}
 
 		timer.update(delta);
