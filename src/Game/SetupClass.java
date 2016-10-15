@@ -39,9 +39,6 @@ public class SetupClass extends BasicGame {
 	private static int windowWidth = 1000;
 	private static int windowHeight = 700;
 	private static boolean fullScreen = false;
-	
-	private static int noRows = ((int)(windowHeight/64)) - 2;
-	private static int noCols = ((int)(windowWidth/64)) - 2;
 
 
 	private Timer timer;
@@ -117,32 +114,35 @@ public class SetupClass extends BasicGame {
 	}
 
 	public void render(GameContainer container, Graphics g) throws SlickException {
-		player.render(container, g);
+
 
 		if (two_player){
 		player2.render(container, g);}
 		timer.render(g, windowWidth); //window width needed for timer bar
-		block.render(container, g);
+		block.render(container, g,false);
 		
 		//for(int row=0;row<(int)(WindowHeight/64);row++){
 			//for(int col=0;col<(int)(wind))
 		//}
 		
 
-		met.render(container,g,noCols,noRows);
+
 
 		
-
+		boolean isRock = false;
 		for(int i = 0; i < grid.length;i++){
 			for(int j = 0; j < grid[0].length; j++){
+				block.yCoord = (i+1)*64;
+				block.xCoord = (j+1)*64;
 				if (grid[i][j] == 2){
-					block.yCoord = (i+1)*64;
-					block.xCoord = (j+1)*64;
-					block.render(container, g);
+					isRock = true;
 				}
+				block.render(container, g,isRock);
+				isRock = false;
 			}
 		}
-		
+		player.render(container, g);
+		met.render(container,g,grid[0].length,grid.length);
 
 
 	}
