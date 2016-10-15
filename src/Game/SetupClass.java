@@ -74,34 +74,25 @@ public class SetupClass extends BasicGame {
 
 		Input input = container.getInput();
 		if (input.isKeyDown(Input.KEY_S)){
-			player.moveDown();
-			if(player.getYCoord()>windowHeight -128){
-				player.yCoord = windowHeight -128;
-			}
+			player.moveDown(windowHeight);
 		}
 		else if (input.isKeyDown(Input.KEY_A)){
 			player.moveLeft();
-			if(player.getXCoord()<64){
-				player.xCoord = 64;
-			}
+			
 		}
 		else if (input.isKeyDown(Input.KEY_D)){
 			
-			player.moveRight();
-			if(player.getXCoord()>windowWidth-128){
-				player.xCoord = windowWidth-128;
-			}
+			player.moveRight(windowWidth);
+			
 		}
 		else if (input.isKeyDown(Input.KEY_W)){
 			player.moveUp();
-			if(player.getYCoord()<64){
-				player.yCoord = 64;
-			}
+			
 		}
 
 		
 		if (input.isKeyDown(Input.KEY_RIGHT)){
-			player2.moveRight();
+			player2.moveRight(windowWidth);
 		}
 		else if (input.isKeyDown(Input.KEY_LEFT)){
 			player2.moveLeft();
@@ -110,7 +101,7 @@ public class SetupClass extends BasicGame {
 			player2.moveUp();
 		}
 		else if (input.isKeyDown(Input.KEY_DOWN)){
-			player2.moveDown();
+			player2.moveDown(windowHeight);
 		}
 
 		timer.update(delta);
