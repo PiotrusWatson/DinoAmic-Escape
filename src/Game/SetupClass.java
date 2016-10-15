@@ -69,7 +69,7 @@ public class SetupClass extends BasicGame {
 	
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-		
+
 		Input input = container.getInput();
 		if (input.isKeyDown(Input.KEY_S)){
 			player.moveDown();
@@ -101,12 +101,6 @@ public class SetupClass extends BasicGame {
 		else if (input.isKeyDown(Input.KEY_DOWN)){
 			player2.moveDown();
 		}
-		for(int i = 0; i < grid.length;i++){
-			for(int j = 0; j < grid[0].length; j++){
-				if (grid[i][j] == 2){
-					block.yCoord = (i+1)*64;
-					block.xCoord = (j+1)*64;
-					System.out.println(player.intersects(block));}}}
 
 		timer.update(delta);
 
@@ -152,12 +146,4 @@ public class SetupClass extends BasicGame {
 		app.start();
 		
 	}
-
-
-
-
-
-
-
-
 }
