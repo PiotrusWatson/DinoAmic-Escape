@@ -10,7 +10,7 @@ import org.newdawn.slick.SpriteSheet;
 
 public class Player extends GameObject{
 	private static int x = 64;
-	private static int y = 64*5;
+	private static int y = 64*6;
 	private int facing = 90;
 	private static int moveSpeed = 64;
 	
