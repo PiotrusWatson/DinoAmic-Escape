@@ -57,7 +57,7 @@ public class SetupClass extends BasicGame {
 		timer = new Timer();
 		block = new Block(1, 2, (byte)3);
 		block.init(container);
-		map=new MapGrid(100,100);
+		map=new MapGrid(((windowWidth/64)-1),((windowHeight/64)-1));
 		map.generateGrid(2);
 		grid = map.getGrid();
 		System.out.print(map);
@@ -70,15 +70,28 @@ public class SetupClass extends BasicGame {
 		Input input = container.getInput();
 		if (input.isKeyDown(Input.KEY_S)){
 			player.moveDown();
+			if(player.getYCoord()>windowHeight -128){
+				player.yCoord = windowHeight -128;
+			}
 		}
 		else if (input.isKeyDown(Input.KEY_A)){
 			player.moveLeft();
+			if(player.getXCoord()<64){
+				player.xCoord = 64;
+			}
 		}
 		else if (input.isKeyDown(Input.KEY_D)){
+			
 			player.moveRight();
+			if(player.getXCoord()>windowWidth-128){
+				player.xCoord = windowWidth-128;
+			}
 		}
 		else if (input.isKeyDown(Input.KEY_W)){
 			player.moveUp();
+			if(player.getYCoord()<64){
+				player.yCoord = 64;
+			}
 		}
 
 		
