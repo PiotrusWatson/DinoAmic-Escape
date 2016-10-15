@@ -15,6 +15,7 @@ import org.newdawn.slick.SpriteSheet;
 
 import GameObjects.Player;
 import GameObjects.GameObject;
+import GameObjects.Metiorite;
 import GameObjects.Timer;
 
 
@@ -43,6 +44,7 @@ public class SetupClass extends BasicGame {
 		player = new Player(1, 2, (byte) 3);
 		player.init(container);
 		timer = new Timer();
+		metiorite = new Metiorite();
 	}
 	
 	@Override
