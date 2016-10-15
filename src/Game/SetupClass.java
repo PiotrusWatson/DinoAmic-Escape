@@ -106,7 +106,8 @@ public class SetupClass extends BasicGame {
 				if (grid[i][j] == 2){
 					block.yCoord = (i+1)*64;
 					block.xCoord = (j+1)*64;
-					System.out.println(player.intersects(block));}}}
+					//System.out.println(player.intersects(block));
+					}}}
 
 		timer.update(delta);
 		met.update(delta);
@@ -136,6 +137,13 @@ public class SetupClass extends BasicGame {
 				block.xCoord = (j+1)*64;
 				if (grid[i][j] == 2){
 					isRock = true;
+					//System.out.println(met.getX());
+					//System.out.println(i + " " + met.getX() + " " + j + " " + met.getY());
+					if((i == met.getY()) && j == met.getX()){
+						grid[i][j] = 0;
+						isRock = false;
+						System.out.println("_-----------------------------------------------------------------------------------");
+					}
 				}
 				block.render(container, g,isRock);
 				isRock = false;
