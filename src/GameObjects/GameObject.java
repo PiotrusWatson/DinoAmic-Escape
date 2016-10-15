@@ -18,6 +18,7 @@ public class GameObject {
 		return this.boundingBox;
 	}
 	
+	/*
 	public boolean intersects(GameObject obj)
 	{
 		if (obj.getBoundingBox() == null)
@@ -27,7 +28,7 @@ public class GameObject {
 		return this.getBoundingBox().intersects(obj.getBoundingBox());
 	}
 	
-	
+	*/
 	public int getXCoord(){
 		return xCoord;
 	}

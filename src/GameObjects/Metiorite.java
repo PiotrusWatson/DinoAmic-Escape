@@ -64,7 +64,6 @@ public class Metiorite extends GameObject {
 				xIndex = (int)(Math.random()*noCol);
 				yIndex = (int)(Math.random()* noRows);
 			}
-
 			
 			x = 64 + (xIndex*64);
 			y = 64 + (yIndex*64);
