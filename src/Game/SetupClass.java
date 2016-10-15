@@ -110,8 +110,8 @@ public class SetupClass extends BasicGame {
 		for(int i = 0; i < grid.length;i++){
 			for(int j = 0; j < grid[0].length; j++){
 				if (grid[i][j] == 2){
-					block.yCoord = i*64;
-					block.xCoord = j*64;
+					block.yCoord = (i+1)*64;
+					block.xCoord = (j+1)*64;
 					block.render(container, g);
 				}
 			}
