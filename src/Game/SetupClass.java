@@ -29,7 +29,7 @@ public class SetupClass extends BasicGame {
 	public Metiorite met;
 	public MapGrid map;
 	public int[][] grid;
-	public static int fps = 300;
+	public static int fps = 1000;
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
@@ -63,7 +63,7 @@ public class SetupClass extends BasicGame {
 		map=new MapGrid(((windowWidth/64)-1),((windowHeight/64)-1));
 		map.generateGrid(2);
 		grid = map.getGrid();
-		System.out.print(map);
+		
 		
 	}
 	
@@ -142,7 +142,6 @@ public class SetupClass extends BasicGame {
 	}
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new SetupClass("Setup Test"));
-		app.setTargetFrameRate(fps);
 		app.setDisplayMode(windowWidth, windowHeight, fullScreen);
 		app.start();
 		
