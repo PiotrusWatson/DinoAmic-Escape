@@ -35,15 +35,11 @@ public class MapGrid {
 			}
 		}
 		
-		randNumber = rand.nextInt(rows);
-		grid[randNumber][0]= 1;
+		grid[5][0]= 1;
 		
 		randNumber = rand.nextInt(rows);
 		grid[randNumber][cols]= 0 ;
 		
-		
-		
-	
 	}
 		
 
