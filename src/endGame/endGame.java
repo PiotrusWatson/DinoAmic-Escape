@@ -78,7 +78,7 @@ public class endGame {
 		String userName = standardInput.nextLine();
 		standardInput.close();
 
-		// the username and password are then appended onto the leaderboard
+		// the username and score are then appended onto the leaderboard
 		String[] appendArray = { userName, userScore };
 		sortedScores.add(appendArray);
 
