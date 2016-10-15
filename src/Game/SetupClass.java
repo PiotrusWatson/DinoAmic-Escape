@@ -35,6 +35,7 @@ public class SetupClass extends BasicGame {
 	public MapGrid map;
 	public int[][] grid;
 	public static int fps = 1000;
+	public boolean reduced = false;
 	public ExitTile exit;
 	/*
 	 * windowWidth = width of the window
@@ -121,9 +122,16 @@ public class SetupClass extends BasicGame {
 		
 		if(met.getTime() > 1000){
 			grid[met.getY()][met.getX()] = 1;
-			if(met.getY() == player.getArrayPosY() && met.getX() == player.getArrayPosX()){
+			if(met.getY() == player.getArrayPosY() -1 && met.getX() == player.getArrayPosX()-1){
+				if(reduced == false){
+					timer.reduce();	
+					reduced = true;
+				}
 				
 			}
+		}
+		if(met.getTime()<1000){
+			reduced = false;
 		}
 
 		met.update(delta);
