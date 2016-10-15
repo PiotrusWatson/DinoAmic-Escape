@@ -69,6 +69,9 @@ public class SetupClass extends BasicGame {
 	
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
+		if(timer.getTime()<= 0){
+			System.exit(0);
+		}
 
 		Input input = container.getInput();
 		if (input.isKeyDown(Input.KEY_S)){

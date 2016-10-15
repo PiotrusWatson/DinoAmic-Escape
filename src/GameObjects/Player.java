@@ -36,6 +36,9 @@ public class Player extends GameObject{
 	public void moveLeft(){
 		facing = 270;
 		this.xCoord -= moveSpeed;
+		if( xCoord <= 64){
+			this.xCoord += moveSpeed;
+		}
 	}
 	public void moveRight(){
 		facing = 90;
