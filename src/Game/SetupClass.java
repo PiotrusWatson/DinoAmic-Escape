@@ -16,21 +16,25 @@ import org.newdawn.slick.SpriteSheet;
 import GameObjects.Player;
 import GameObjects.GameObject;
 import GameObjects.Timer;
+import levelGen.MapGrid;
 import GameObjects.Block;
+
 
 
 public class SetupClass extends BasicGame {
 	public Player player;
 	public Block block;
 	public Player player2;
+	public MapGrid map;
+	public int[][] grid;
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
 	 * fullScreen if true makes game fullScreen
 	 */
-	private static int windowWidth = 1000;
-	private static int windowHeight = 700;
-	private static boolean fullScreen = false; 
+	private static int windowWidth = 1920;
+	private static int windowHeight = 1080;
+	private static boolean fullScreen = true; 
 
 
 	private Timer timer;
@@ -52,6 +56,11 @@ public class SetupClass extends BasicGame {
 		timer = new Timer();
 		block = new Block(1, 2, (byte)3);
 		block.init(container);
+		map=new MapGrid(100,100);
+		map.generateGrid(2);
+		grid = map.getGrid();
+		System.out.print(map);
+		
 	}
 	
 	@Override
@@ -97,7 +106,15 @@ public class SetupClass extends BasicGame {
 		player2.render(container, g);}
 		timer.render(g);
 		block.render(container, g);
-		//g.drawString(Integer.toString(time),0,0);
+		for(int i = 0; i < grid.length;i++){
+			for(int j = 0; j < grid[0].length; j++){
+				if (grid[i][j] == 2){
+					block.yCoord = i*64;
+					block.xCoord = j*64;
+					block.render(container, g);
+				}
+			}
+		}
 
 	}
 	public static void main(String[] args) throws SlickException {
