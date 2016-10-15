@@ -14,8 +14,10 @@ public class Player extends GameObject{
 	private int facing = 90;
 	private static int moveSpeed = 1;
 	
-	private SpriteSheet dinoSprite;
-	private Animation dinoAnimation;
+	
+	
+	private SpriteSheet WalkSprite;
+	private Animation WalkAnimation;
 	
 	public Player(int xCoord, int yCoord, byte layer) throws SlickException {
 		super(x, y, layer);
@@ -24,9 +26,18 @@ public class Player extends GameObject{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public int getArrayPosX(){
+		return this.xCoord / SCALE;
+	}
+	
+	
+	public int getArrayPosY(){
+		return this.yCoord / SCALE;
+	}
+	
 	public void init(GameContainer container) throws SlickException{
-		dinoSprite = new SpriteSheet("src/res/DINODEANWeaponPNG.png", 64, 64);
-		dinoAnimation = new Animation(dinoSprite, 100);
+		WalkSprite = new SpriteSheet("src/res/DINODEANWeaponPNG.png", 64, 64);
+		WalkAnimation = new Animation(WalkSprite, 100);
 		
 	}
 	public void update(){
@@ -36,23 +47,35 @@ public class Player extends GameObject{
 	public void moveLeft(){
 		facing = 270;
 		this.xCoord -= moveSpeed;
+		if( xCoord <= 64){
+			this.xCoord += moveSpeed;
+		}
 	}
-	public void moveRight(){
+	public void moveRight(int[][] grid){
 		facing = 90;
 		this.xCoord += moveSpeed;
+		if(xCoord >= (grid[0].length)*64){
+			this.xCoord -= moveSpeed;
+		}
 	}
 	public void moveUp(){
 		facing = 0;
 		this.yCoord -= moveSpeed;
+		if( yCoord <= 64){
+			this.yCoord += moveSpeed;
+		}
 	}
-	public void moveDown(){
+	public void moveDown(int[][] grid){
 		facing = 180;
 		this.yCoord += moveSpeed;
+		if(yCoord >= (grid.length)*64){
+			this.yCoord -= moveSpeed;
+		}
 
 	}
 	public void render(GameContainer container, Graphics g) throws SlickException{
-		dinoAnimation.getCurrentFrame().setRotation(facing);
-		dinoAnimation.draw(this.xCoord, this.yCoord);
+		WalkAnimation.getCurrentFrame().setRotation(facing);
+		WalkAnimation.draw(this.xCoord, this.yCoord);
 		// TODO Auto-generated method stub
 		
 	}

@@ -29,7 +29,7 @@ public class SetupClass extends BasicGame {
 	public Metiorite met;
 	public MapGrid map;
 	public int[][] grid;
-	public static int fps = 60;
+	public static int fps = 1000;
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
@@ -63,16 +63,19 @@ public class SetupClass extends BasicGame {
 		map=new MapGrid(((windowWidth/64)-1),((windowHeight/64)-1));
 		map.generateGrid(2);
 		grid = map.getGrid();
-		System.out.print(map);
+		
 		
 	}
 	
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-		
+		if(timer.getTime()<= 0){
+			System.exit(0);
+		}
+
 		Input input = container.getInput();
 		if (input.isKeyDown(Input.KEY_S)){
-			player.moveDown();
+			player.moveDown(grid);
 		}
 		else if (input.isKeyDown(Input.KEY_A)){
 			player.moveLeft();
@@ -80,7 +83,7 @@ public class SetupClass extends BasicGame {
 		}
 		else if (input.isKeyDown(Input.KEY_D)){
 			
-			player.moveRight();
+			player.moveRight(grid);
 			
 		}
 		else if (input.isKeyDown(Input.KEY_W)){
@@ -90,7 +93,7 @@ public class SetupClass extends BasicGame {
 
 		
 		if (input.isKeyDown(Input.KEY_RIGHT)){
-			player2.moveRight();
+			player2.moveRight(grid);
 		}
 		else if (input.isKeyDown(Input.KEY_LEFT)){
 			player2.moveLeft();
@@ -99,8 +102,9 @@ public class SetupClass extends BasicGame {
 			player2.moveUp();
 		}
 		else if (input.isKeyDown(Input.KEY_DOWN)){
-			player2.moveDown();
+			player2.moveDown(grid);
 		}
+		
 		for(int i = 0; i < grid.length;i++){
 			for(int j = 0; j < grid[0].length; j++){
 				if (grid[i][j] == 2){
@@ -110,6 +114,11 @@ public class SetupClass extends BasicGame {
 					}}}
 
 		timer.update(delta);
+		
+		if(timer.getTime() == 0 || timer.getTime() < 0){
+			
+		}
+
 		met.update(delta);
 
 	}
@@ -142,7 +151,7 @@ public class SetupClass extends BasicGame {
 					if((i == met.getY()) && j == met.getX()){
 						grid[i][j] = 0;
 						isRock = false;
-						System.out.println("_-----------------------------------------------------------------------------------");
+						//System.out.println("_-----------------------------------------------------------------------------------");
 					}
 				}
 				block.render(container, g,isRock);
@@ -156,17 +165,8 @@ public class SetupClass extends BasicGame {
 	}
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new SetupClass("Setup Test"));
-		app.setTargetFrameRate(fps);
 		app.setDisplayMode(windowWidth, windowHeight, fullScreen);
 		app.start();
 		
 	}
-
-
-
-
-
-
-
-
 }
