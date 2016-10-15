@@ -31,7 +31,7 @@ public class SetupClass extends BasicGame {
 
 
 	private Timer timer;
-	private int time;
+	//private int time;
 
 	public SetupClass(String title) {
 		super(title);
@@ -61,13 +61,14 @@ public class SetupClass extends BasicGame {
 		if (input.isKeyDown(Input.KEY_W)){
 			player.moveUp();
 		}
-		time = timer.update(delta);
+		timer.update(delta);
 
 	}
 
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		player.render(container, g);
-		g.drawString(Integer.toString(time),0,0);
+		timer.render(g);
+		//g.drawString(Integer.toString(time),0,0);
 
 
 	}
