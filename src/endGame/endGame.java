@@ -102,8 +102,4 @@ public class endGame {
 		}
 	}
 
-	private String String(int score) {
-		// TODO Auto-generated method stub
-		return null;
 	}
-}
