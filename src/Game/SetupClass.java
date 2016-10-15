@@ -111,7 +111,10 @@ public class SetupClass extends BasicGame {
 		}
 
 		else if (input.isKeyPressed(Input.KEY_SPACE)){
-			player.headButt(grid, block);
+			boolean valid =player.headButt(grid, block);
+			if(valid){
+				timer.reduce();
+			}
 		}
 		
 		timer.update(delta);
