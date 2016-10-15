@@ -23,7 +23,8 @@ public class Block extends GameObject{
 		blockSprite = new SpriteSheet("src/res/hardRockAnimationSSheet.png", SCALE, SCALE);
 		explode = new Animation(blockSprite, 100);
 		blockStatic = explode.getImage(0);
-	}
+		
+		}
 	
 	public void render(GameContainer container, Graphics g){
 		blockStatic.draw((float)this.xCoord, (float)this.yCoord);

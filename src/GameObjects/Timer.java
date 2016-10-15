@@ -15,8 +15,11 @@ public class Timer extends GameObject {
 		time = 30000;
 	}
 	
-	public int update(int delta){
+	public void update(int delta){
 		time -= delta;
+	}
+	
+	public int getTime(){
 		return time;
 	}
 	public void render(Graphics g, int width){

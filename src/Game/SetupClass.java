@@ -15,6 +15,7 @@ import org.newdawn.slick.SpriteSheet;
 
 import GameObjects.Player;
 import GameObjects.GameObject;
+import GameObjects.Metiorite;
 import GameObjects.Timer;
 import levelGen.MapGrid;
 import GameObjects.Block;
@@ -25,8 +26,10 @@ public class SetupClass extends BasicGame {
 	public Player player;
 	public Block block;
 	public Player player2;
+	public Metiorite met;
 	public MapGrid map;
 	public int[][] grid;
+	public static int fps = 60;
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
@@ -36,6 +39,7 @@ public class SetupClass extends BasicGame {
 	private static int windowWidth = 1000;
 	private static int windowHeight = 700;
 	private static boolean fullScreen = false;
+
 
 
 
@@ -55,6 +59,7 @@ public class SetupClass extends BasicGame {
 		player.init(container);
 		player2.init(container);
 		timer = new Timer();
+		met = new Metiorite(0);
 		block = new Block(1, 2, (byte)3);
 		block.init(container);
 		map=new MapGrid(((windowWidth/64)-1),((windowHeight/64)-1));
@@ -120,6 +125,9 @@ public class SetupClass extends BasicGame {
 		player2.render(container, g);}
 		timer.render(g, windowWidth); //window width needed for timer bar
 		block.render(container, g);
+
+		//met.render(container,g,timer.getTime());
+
 		for(int i = 0; i < grid.length;i++){
 			for(int j = 0; j < grid[0].length; j++){
 				if (grid[i][j] == 2){
@@ -130,9 +138,11 @@ public class SetupClass extends BasicGame {
 			}
 		}
 
+
 	}
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new SetupClass("Setup Test"));
+		app.setTargetFrameRate(fps);
 		app.setDisplayMode(windowWidth, windowHeight, fullScreen);
 		app.start();
 		
