@@ -6,6 +6,7 @@ public class GameObject {
 	public int xCoord;
 	public int yCoord;
 	public byte layer;
+	public static final int SCALE = 64;
 	
 	public int getXCoord(){
 		return xCoord;
