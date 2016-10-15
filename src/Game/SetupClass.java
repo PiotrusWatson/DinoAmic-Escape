@@ -106,6 +106,13 @@ public class SetupClass extends BasicGame {
 		if(timer.getTime() == 0 || timer.getTime() < 0){
 			
 		}
+		
+		if(met.getTime() > 1000){
+			grid[met.getY()][met.getX()] = 1;
+			if(met.getY() == player.getArrayPosY() && met.getX() == player.getArrayPosX()){
+				
+			}
+		}
 
 		met.update(delta);
 
@@ -119,9 +126,6 @@ public class SetupClass extends BasicGame {
 		timer.render(g, windowWidth); //window width needed for timer bar
 		block.render(container, g,false);
 		
-		//for(int row=0;row<(int)(WindowHeight/64);row++){
-			//for(int col=0;col<(int)(wind))
-		//}
 		
 
 
@@ -134,12 +138,10 @@ public class SetupClass extends BasicGame {
 				block.xCoord = (j+1)*64;
 				if (grid[i][j] == 2){
 					isRock = true;
-					//System.out.println(met.getX());
-					//System.out.println(i + " " + met.getX() + " " + j + " " + met.getY());
 					if((i == met.getY()) && j == met.getX()){
 						grid[i][j] = 1;
 						isRock = false;
-						//System.out.println("_-----------------------------------------------------------------------------------");
+
 					}
 				}
 				block.render(container, g,isRock);
@@ -152,7 +154,7 @@ public class SetupClass extends BasicGame {
 			}
 		}
 		player.render(container, g);
-		met.render(container,g,grid[0].length,grid.length);
+		met.render(container,g,grid[0].length,grid.length,player.getArrayPosX(),player.getArrayPosY());
 
 
 	}
