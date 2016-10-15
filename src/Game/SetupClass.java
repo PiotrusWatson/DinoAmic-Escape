@@ -113,7 +113,7 @@ public class SetupClass extends BasicGame {
 		else if (input.isKeyPressed(Input.KEY_SPACE)){
 			boolean valid =player.headButt(grid, block);
 			if(valid){
-				timer.reduce();
+				timer.reduce(2000);
 			}
 		}
 		
@@ -127,7 +127,7 @@ public class SetupClass extends BasicGame {
 			grid[met.getY()][met.getX()] = 1;
 			if(met.getY() == player.getArrayPosY() -1 && met.getX() == player.getArrayPosX()-1){
 				if(reduced == false){
-					timer.reduce();	
+					timer.reduce(10000);	
 					reduced = true;
 				}
 				
