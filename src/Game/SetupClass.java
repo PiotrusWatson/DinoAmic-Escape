@@ -84,7 +84,7 @@ public class SetupClass extends BasicGame {
 			player.moveDown(grid);
 		}
 		else if (input.isKeyPressed(Input.KEY_A)){
-			player.moveLeft();
+			player.moveLeft(grid,block);
 			
 		}
 		else if (input.isKeyPressed(Input.KEY_D)){
