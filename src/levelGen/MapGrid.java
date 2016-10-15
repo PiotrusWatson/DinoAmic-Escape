@@ -18,7 +18,6 @@ public class MapGrid {
 	
 	//Generates a grid
 	public void generateGrid(int numberOfBlocks){
-		
 		int rows = ((grid.length)-1);
 		int cols = ((grid[0].length)-1);
 		

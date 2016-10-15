@@ -17,7 +17,9 @@ import GameObjects.Player;
 import GameObjects.GameObject;
 import GameObjects.Metiorite;
 import GameObjects.Timer;
+import levelGen.MapGrid;
 import GameObjects.Block;
+
 
 
 public class SetupClass extends BasicGame {
@@ -25,20 +27,22 @@ public class SetupClass extends BasicGame {
 	public Block block;
 	public Player player2;
 	public Metiorite met;
+	public MapGrid map;
+	public int[][] grid;
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
 	 * fullScreen if true makes game fullScreen
 	 */
-	private static int windowWidth = 1000;
-	private static int windowHeight = 700;
-	private static boolean fullScreen = false; // set to true for two players
+	private static int windowWidth = 1920;
+	private static int windowHeight = 1080;
+	private static boolean fullScreen = false; 
 
 
 	private Timer timer;
 
 
-	private static boolean two_player = true;
+	private static boolean two_player = false;// set to true for two players
 	
 	public SetupClass(String title) {
 		super(title);
@@ -55,6 +59,11 @@ public class SetupClass extends BasicGame {
 		met = new Metiorite(0);
 		block = new Block(1, 2, (byte)3);
 		block.init(container);
+		map=new MapGrid(100,100);
+		map.generateGrid(2);
+		grid = map.getGrid();
+		System.out.print(map);
+		
 	}
 	
 	@Override
@@ -100,8 +109,20 @@ public class SetupClass extends BasicGame {
 		player2.render(container, g);}
 		timer.render(g);
 		block.render(container, g);
+
 		met.render(g,timer.getTime());
 		//g.drawString(Integer.toString(time),0,0);
+
+		for(int i = 0; i < grid.length;i++){
+			for(int j = 0; j < grid[0].length; j++){
+				if (grid[i][j] == 2){
+					block.yCoord = i*64;
+					block.xCoord = j*64;
+					block.render(container, g);
+				}
+			}
+		}
+
 
 	}
 	public static void main(String[] args) throws SlickException {
