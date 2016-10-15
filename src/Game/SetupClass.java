@@ -16,10 +16,12 @@ import org.newdawn.slick.SpriteSheet;
 import GameObjects.Player;
 import GameObjects.GameObject;
 import GameObjects.Timer;
+import GameObjects.Block;
 
 
 public class SetupClass extends BasicGame {
 	public Player player;
+	public Block block;
 	public Player player2;
 	/*
 	 * windowWidth = width of the window
@@ -48,6 +50,8 @@ public class SetupClass extends BasicGame {
 		player.init(container);
 		player2.init(container);
 		timer = new Timer();
+		block = new Block(1, 2, (byte)3);
+		block.init(container);
 	}
 	
 	@Override
@@ -92,8 +96,8 @@ public class SetupClass extends BasicGame {
 		if (two_player){
 		player2.render(container, g);}
 		timer.render(g);
-
-
+		block.render(container, g);
+		//g.drawString(Integer.toString(time),0,0);
 
 	}
 	public static void main(String[] args) throws SlickException {

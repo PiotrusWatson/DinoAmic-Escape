@@ -1,10 +1,36 @@
 package GameObjects;
 
-public class Block extends GameObject{
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.Image;
 
-	public Block(int xCoord, int yCoord, byte layer) {
+public class Block extends GameObject{
+	
+	private SpriteSheet blockSprite;
+	private Animation explode;
+	private Image blockStatic;
+	public int health;
+	
+	public Block(int xCoord, int yCoord, byte layer) throws SlickException{
 		super(xCoord, yCoord, layer);
 		// TODO Auto-generated constructor stub
+	}
+	
+	public void init(GameContainer container) throws SlickException{
+		blockSprite = new SpriteSheet("src/res/hardRockAnimationSSheet.png", SCALE, SCALE);
+		explode = new Animation(blockSprite, 100);
+		blockStatic = explode.getImage(0);
+	}
+	
+	public void render(GameContainer container, Graphics g){
+		blockStatic.draw((float)this.xCoord, (float)this.yCoord);
+	}
+	
+	public void update(){
+		
 	}
 
 }
