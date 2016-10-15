@@ -29,7 +29,7 @@ public class SetupClass extends BasicGame {
 	public Metiorite met;
 	public MapGrid map;
 	public int[][] grid;
-	public static int fps = 60;
+	public static int fps = 1000;
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
@@ -63,13 +63,13 @@ public class SetupClass extends BasicGame {
 		map=new MapGrid(((windowWidth/64)-1),((windowHeight/64)-1));
 		map.generateGrid(2);
 		grid = map.getGrid();
-		System.out.print(map);
+		
 		
 	}
 	
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-		
+
 		Input input = container.getInput();
 		if (input.isKeyDown(Input.KEY_S)){
 			player.moveDown();
@@ -101,12 +101,6 @@ public class SetupClass extends BasicGame {
 		else if (input.isKeyDown(Input.KEY_DOWN)){
 			player2.moveDown();
 		}
-		for(int i = 0; i < grid.length;i++){
-			for(int j = 0; j < grid[0].length; j++){
-				if (grid[i][j] == 2){
-					block.yCoord = (i+1)*64;
-					block.xCoord = (j+1)*64;
-					System.out.println(player.intersects(block));}}}
 
 		timer.update(delta);
 		met.update(delta);
@@ -148,17 +142,8 @@ public class SetupClass extends BasicGame {
 	}
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new SetupClass("Setup Test"));
-		app.setTargetFrameRate(fps);
 		app.setDisplayMode(windowWidth, windowHeight, fullScreen);
 		app.start();
 		
 	}
-
-
-
-
-
-
-
-
 }
