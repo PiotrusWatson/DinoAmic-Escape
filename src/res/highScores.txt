@@ -1,6 +1,8 @@
 Harry,4000
+Andrew,4000
 James,3800
 Frank,3000
+Josh,2800
 Jake,2500
 Jeff,1900
 Dave,1800
@@ -9,4 +11,4 @@ John,700
 Max,500
 Scott,400
 Jim,50
-Josh,2800
+Andrew,null
