@@ -42,7 +42,7 @@ public class Player extends GameObject{
 	public void moveDown(){
 		this.yCoord += 1;
 	}
-	public void render(GameContainer container, Graphics arg1) throws SlickException{
+	public void render(GameContainer container, Graphics g) throws SlickException{
 		dinoAnimation.draw(this.xCoord, this.yCoord);
 		// TODO Auto-generated method stub
 		

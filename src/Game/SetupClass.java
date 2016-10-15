@@ -14,6 +14,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
 import GameObjects.Player;
+import GameObjects.GameObject;
+import GameObjects.Timer;
 
 
 public class SetupClass extends BasicGame {
@@ -27,15 +29,20 @@ public class SetupClass extends BasicGame {
 	private static int windowHeight = 700;
 	private static boolean fullScreen = false;
 
-	
+
+	private Timer timer;
+	private int time;
+
 	public SetupClass(String title) {
 		super(title);
 		
 	}
 	@Override
 	public void init(GameContainer container) throws SlickException {
+
 		player = new Player(1, 2, (byte) 3);
 		player.init(container);
+		timer = new Timer();
 	}
 	
 	@Override
@@ -54,11 +61,15 @@ public class SetupClass extends BasicGame {
 		if (input.isKeyDown(Input.KEY_W)){
 			player.moveUp();
 		}
+		time = timer.update(delta);
 
 	}
 
-	public void render(GameContainer container, Graphics arg1) throws SlickException {
-		player.render(container, arg1);
+	public void render(GameContainer container, Graphics g) throws SlickException {
+		player.render(container, g);
+		g.drawString(Integer.toString(time),0,0);
+
+
 	}
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new SetupClass("Setup Test"));
