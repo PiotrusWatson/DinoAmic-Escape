@@ -95,18 +95,25 @@ public class SetupClass extends BasicGame {
 		Input input = container.getInput();
 		if (input.isKeyPressed(Input.KEY_S)){
 			player.moveDown(grid, block);
+			player.headbutting = false;
+
 		}
 		else if (input.isKeyPressed(Input.KEY_A)){
 			player.moveLeft(grid,block);
+			player.headbutting = false;
+
 			
 		}
 		else if (input.isKeyPressed(Input.KEY_D)){
 			
 			player.moveRight(grid, block);
+			player.headbutting = false;
+
 			
 		}
 		else if (input.isKeyPressed(Input.KEY_W)){
 			player.moveUp(grid, block);
+			player.headbutting = false;
 			
 		}
 
@@ -114,6 +121,7 @@ public class SetupClass extends BasicGame {
 			boolean valid =player.headButt(grid, block);
 			if(valid){
 				timer.reduce(2000);
+				player.headbutting = true;
 			}
 		}
 		

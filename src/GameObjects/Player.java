@@ -13,11 +13,13 @@ public class Player extends GameObject{
 	private static int y = 64*6;
 	private int facing = 90;
 	private static int moveSpeed = 64;
-	
+	public boolean headbutting = false; // used to decide weather to use headbutt animation or not
 	
 	
 	private SpriteSheet WalkSprite;
 	private Animation WalkAnimation;
+	private SpriteSheet HeadbuttSprite;
+	private Animation HeadbuttAnimation;
 	
 	public Player(int xCoord, int yCoord, byte layer) throws SlickException {
 		super(x, y, layer);
@@ -38,6 +40,8 @@ public class Player extends GameObject{
 	public void init(GameContainer container) throws SlickException{
 		WalkSprite = new SpriteSheet("src/res/DINODEANWeaponPNG.png", 64, 64);
 		WalkAnimation = new Animation(WalkSprite, 100);
+		HeadbuttSprite = new SpriteSheet("src/res/DDGlasgow123.png", 64, 64);
+		HeadbuttAnimation = new Animation(HeadbuttSprite, 100); //change from 100 if cycles too fast
 		
 	}
 	public void update(){
@@ -178,8 +182,13 @@ public class Player extends GameObject{
 		return allowed;
 	}
 	public void render(GameContainer container, Graphics g) throws SlickException{
+		if (!headbutting){
 		WalkAnimation.getCurrentFrame().setRotation(facing);
-		WalkAnimation.draw(this.xCoord, this.yCoord);
+		WalkAnimation.draw(this.xCoord, this.yCoord);}
+		else{
+			HeadbuttAnimation.getCurrentFrame().setRotation(facing);
+			HeadbuttAnimation.draw(this.xCoord, this.yCoord);
+		}
 		// TODO Auto-generated method stub
 		
 	}
