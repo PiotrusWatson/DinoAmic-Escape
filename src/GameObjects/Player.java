@@ -54,10 +54,14 @@ public class Player extends GameObject{
 	public void moveRight(){
 		facing = 90;
 		this.xCoord += moveSpeed;
+		if(xCoo)
 	}
 	public void moveUp(){
 		facing = 0;
 		this.yCoord -= moveSpeed;
+		if( yCoord <= 64){
+			this.yCoord += moveSpeed;
+		}
 	}
 	public void moveDown(){
 		facing = 180;
