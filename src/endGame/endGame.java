@@ -5,7 +5,7 @@ import java.util.*;
 
 public class endGame {
 
-	public static void main(String[] args) {
+	public void finish() {
 
 		// Initialising variables and files
 		// change this to take input from other classes as the users' score

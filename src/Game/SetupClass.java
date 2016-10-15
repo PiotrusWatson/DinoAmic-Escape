@@ -110,8 +110,21 @@ public class SetupClass extends BasicGame {
 		else if (input.isKeyDown(Input.KEY_DOWN)){
 			player2.moveDown(grid);
 		}
+		
+		for(int i = 0; i < grid.length;i++){
+			for(int j = 0; j < grid[0].length; j++){
+				if (grid[i][j] == 2){
+					block.yCoord = (i+1)*64;
+					block.xCoord = (j+1)*64;
+					//System.out.println(player.intersects(block));
+					}}}
 
 		timer.update(delta);
+		
+		if(timer.getTime() == 0 || timer.getTime() < 0){
+			
+		}
+
 		met.update(delta);
 
 	}
@@ -139,6 +152,13 @@ public class SetupClass extends BasicGame {
 				block.xCoord = (j+1)*64;
 				if (grid[i][j] == 2){
 					isRock = true;
+					//System.out.println(met.getX());
+					//System.out.println(i + " " + met.getX() + " " + j + " " + met.getY());
+					if((i == met.getY()) && j == met.getX()){
+						grid[i][j] = 0;
+						isRock = false;
+						//System.out.println("_-----------------------------------------------------------------------------------");
+					}
 				}
 				block.render(container, g,isRock);
 				isRock = false;
