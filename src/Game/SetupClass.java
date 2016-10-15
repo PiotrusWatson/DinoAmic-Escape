@@ -77,10 +77,13 @@ public class SetupClass extends BasicGame {
 	
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
+		if(timer.getTime()<= 0){
+			System.exit(0);
+		}
 
 		Input input = container.getInput();
 		if (input.isKeyDown(Input.KEY_S)){
-			player.moveDown();
+			player.moveDown(grid);
 		}
 		else if (input.isKeyDown(Input.KEY_A)){
 			player.moveLeft();
@@ -88,7 +91,7 @@ public class SetupClass extends BasicGame {
 		}
 		else if (input.isKeyDown(Input.KEY_D)){
 			
-			player.moveRight();
+			player.moveRight(grid);
 			
 		}
 		else if (input.isKeyDown(Input.KEY_W)){
@@ -98,7 +101,7 @@ public class SetupClass extends BasicGame {
 
 		
 		if (input.isKeyDown(Input.KEY_RIGHT)){
-			player2.moveRight();
+			player2.moveRight(grid);
 		}
 		else if (input.isKeyDown(Input.KEY_LEFT)){
 			player2.moveLeft();
@@ -107,7 +110,7 @@ public class SetupClass extends BasicGame {
 			player2.moveUp();
 		}
 		else if (input.isKeyDown(Input.KEY_DOWN)){
-			player2.moveDown();
+			player2.moveDown(grid);
 		}
 
 		timer.update(delta);
