@@ -29,7 +29,7 @@ public class SetupClass extends BasicGame {
 	public Metiorite met;
 	public MapGrid map;
 	public int[][] grid;
-	public static int fps = 60;
+	public static int fps = 300;
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
