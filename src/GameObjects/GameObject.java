@@ -3,8 +3,8 @@ package GameObjects;
 public class GameObject {
 	//A base by which all objects in the game can use and modify
 	
-	private int xCoord;
-	private int yCoord;
+	public int xCoord;
+	public int yCoord;
 	public byte layer;
 	
 	public int getXCoord(){
