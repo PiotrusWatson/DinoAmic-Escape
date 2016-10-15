@@ -21,6 +21,7 @@ import GameObjects.Metiorite;
 import GameObjects.Timer;
 import levelGen.MapGrid;
 import GameObjects.Block;
+import GameObjects.ExitTile;
 //import org.newdawn.slick.geom.Rectangle;
 
 
@@ -34,6 +35,7 @@ public class SetupClass extends BasicGame {
 	public int[][] grid;
 	public static int fps = 1000;
 	public boolean reduced = false;
+	public ExitTile exit;
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
@@ -67,6 +69,8 @@ public class SetupClass extends BasicGame {
 		map=new MapGrid(((windowWidth/64)-1),((windowHeight/64)-1));
 		map.generateGrid(2);
 		grid = map.getGrid();
+		exit = new ExitTile(1, 2, (byte)3);
+		exit.init(container);
 		
 		
 	}
@@ -82,7 +86,7 @@ public class SetupClass extends BasicGame {
 
 		Input input = container.getInput();
 		if (input.isKeyPressed(Input.KEY_S)){
-			player.moveDown(grid,block);
+			player.moveDown(grid, block);
 		}
 		else if (input.isKeyPressed(Input.KEY_A)){
 			player.moveLeft(grid,block);
@@ -98,6 +102,10 @@ public class SetupClass extends BasicGame {
 			
 		}
 
+		else if (input.isKeyPressed(Input.KEY_SPACE)){
+			player.headButt(grid, block);
+		}
+		
 		timer.update(delta);
 		
 		if(timer.getTime() == 0 || timer.getTime() < 0){
@@ -130,9 +138,6 @@ public class SetupClass extends BasicGame {
 		timer.render(g, windowWidth); //window width needed for timer bar
 		block.render(container, g,false);
 		
-		//for(int row=0;row<(int)(WindowHeight/64);row++){
-			//for(int col=0;col<(int)(wind))
-		//}
 		
 
 
@@ -146,12 +151,18 @@ public class SetupClass extends BasicGame {
 				if (grid[i][j] == 2){
 					isRock = true;
 					if((i == met.getY()) && j == met.getX()){
-						//grid[i][j] = 1;
-						//isRock = false;		
+						grid[i][j] = 1;
+						isRock = false;
+
 					}
 				}
 				block.render(container, g,isRock);
 				isRock = false;
+				if(grid[i][j] == 0){
+					exit.yCoord = (i+1)*64;
+					exit.xCoord = (j+1)*64;
+					exit.render(container, g);
+				}
 			}
 		}
 		player.render(container, g);
