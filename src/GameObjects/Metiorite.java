@@ -58,8 +58,8 @@ public class Metiorite extends GameObject {
 		} else if(random == 0){
 			int random2 = (int)(Math.random() *3);
 			if(random2 ==0){
-				xIndex = playerX;
-				yIndex = playerY;			
+				xIndex = playerX-1;
+				yIndex = playerY-1;			
 			} else {
 				xIndex = (int)(Math.random()*noCol);
 				yIndex = (int)(Math.random()* noRows);
