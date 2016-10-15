@@ -77,12 +77,14 @@ public class Player extends GameObject{
 		}
 
 	}
-	public void headButt(int[][] grid, Block block){
+	public boolean headButt(int[][] grid, Block block){
+		boolean valid = false;
 		if (this.facing == 0){
 			if (!isAllowedUp(grid, block)){
 				int j = this.getArrayPosX();
 				int i = this.getArrayPosY();
 				grid[i-2][j-1] = 1;
+				valid = true;
 			}
 		}
 		else if (this.facing == 90){
@@ -90,6 +92,7 @@ public class Player extends GameObject{
 				int j = this.getArrayPosX() ;
 				int i = this.getArrayPosY();
 				grid[i-1][j] = 1;
+				valid = true;
 			}
 		}
 		else if (this.facing == 180){
@@ -97,6 +100,7 @@ public class Player extends GameObject{
 				int j = this.getArrayPosX();
 				int i = this.getArrayPosY();
 				grid[i][j-1] = 1;
+				valid = true;
 			}
 		}
 		else if (this.facing == 270){
@@ -104,8 +108,10 @@ public class Player extends GameObject{
 				int j = this.getArrayPosX() ;
 				int i = this.getArrayPosY();
 				grid[i-1][j-2] = 1;
+				valid = true;
 			}
 		}
+		return valid;
 		
 	}
 	
