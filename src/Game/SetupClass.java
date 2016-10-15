@@ -12,11 +12,16 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import GameObjects.GameObject;
+import GameObjects.Timer;
+
 
 public class SetupClass extends BasicGame {
 
 	private int y;
 	private int x;
+	private Timer timer;
+	private int time;
 	private SpriteSheet dinoSheet;
 	private Animation dinoAnimation;
 	public SetupClass(String title) {
@@ -28,6 +33,7 @@ public class SetupClass extends BasicGame {
 	public void init(GameContainer container) throws SlickException {
 		dinoSheet = new SpriteSheet("src/res/DINODEANWeaponPNG.png", 64, 64);
 		dinoAnimation = new Animation(dinoSheet, 100);
+		timer = new Timer();
 	}
 
 	public void update(GameContainer container, int delta) throws SlickException {
@@ -45,11 +51,13 @@ public class SetupClass extends BasicGame {
 		if (input.isKeyDown(Input.KEY_W)){
 			y -= 1;
 		}
+		time = timer.update(delta);
 
 	}
 
-	public void render(GameContainer container, Graphics arg1) throws SlickException {
+	public void render(GameContainer container, Graphics g) throws SlickException {
 		dinoAnimation.draw(this.x, this.y);
+		g.drawString(Integer.toString(time),0,0);
 	}
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new SetupClass("Setup Test"));
