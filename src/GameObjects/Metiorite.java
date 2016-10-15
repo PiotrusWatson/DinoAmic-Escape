@@ -33,13 +33,8 @@ public class Metiorite extends GameObject {
 
 	
 	public void render(GameContainer container, Graphics g, int time) throws SlickException{
-		img = new Image("src/res/floor.png");
-		for(int i=0;i<rate;i++){
-			System.out.println(time + " " + ranArray[i]);
-			if(time > (ranArray[i] * 10) && time < ((ranArray[i] * 10) + 100)){
-				img.draw(time/10 ,time/10);
-			}
-		}
+			img.draw(50 ,50);
+
 
 
 		// TODO Auto-generated method stub

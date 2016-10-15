@@ -29,20 +29,23 @@ public class SetupClass extends BasicGame {
 	public Metiorite met;
 	public MapGrid map;
 	public int[][] grid;
+	public static int fps = 60;
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
 	 * fullScreen if true makes game fullScreen
 	 */
-	private static int windowWidth = 800;
-	private static int windowHeight = 600;
-	private static boolean fullScreen = false; 
+
+	private static int windowWidth = 1000;
+	private static int windowHeight = 700;
+	private static boolean fullScreen = false;
+
+
 
 
 	private Timer timer;
+	private static boolean two_player = false; // set to true for two players
 
-
-	private static boolean two_player = false;// set to true for two players
 	
 	public SetupClass(String title) {
 		super(title);
@@ -107,16 +110,16 @@ public class SetupClass extends BasicGame {
 
 		if (two_player){
 		player2.render(container, g);}
-		timer.render(g);
+		timer.render(g, windowWidth); //window width needed for timer bar
 		block.render(container, g);
 
-		met.render(container,g,timer.getTime());
+		//met.render(container,g,timer.getTime());
 
 		for(int i = 0; i < grid.length;i++){
 			for(int j = 0; j < grid[0].length; j++){
 				if (grid[i][j] == 2){
-					block.yCoord = i*64;
-					block.xCoord = j*64;
+					block.yCoord = (i+1)*64;
+					block.xCoord = (j+1)*64;
 					block.render(container, g);
 				}
 			}
@@ -126,6 +129,7 @@ public class SetupClass extends BasicGame {
 	}
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new SetupClass("Setup Test"));
+		app.setTargetFrameRate(fps);
 		app.setDisplayMode(windowWidth, windowHeight, fullScreen);
 		app.start();
 		
