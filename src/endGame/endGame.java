@@ -5,12 +5,11 @@ import java.util.*;
 
 public class endGame {
 
-	public void finish() {
+	public static void finish(String score) {
 
 		// Initialising variables and files
-		// change this to take input from other classes as the users' score
-		// ***IMPORTANT***
-		String userScore = "2800";
+		String userScore = score;
+		//String userScore = "2800";
 
 		List<String[]> scores = new ArrayList<String[]>();
 		List<String[]> sortedScores = new ArrayList<String[]>();
@@ -101,5 +100,10 @@ public class endGame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private String String(int score) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
