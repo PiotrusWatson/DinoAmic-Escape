@@ -22,6 +22,7 @@ import GameObjects.Block;
 public class SetupClass extends BasicGame {
 	public Player player;
 	public Block block;
+	public Player player2;
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
@@ -29,12 +30,14 @@ public class SetupClass extends BasicGame {
 	 */
 	private static int windowWidth = 1000;
 	private static int windowHeight = 700;
-	private static boolean fullScreen = false;
+	private static boolean fullScreen = false; // set to true for two players
 
 
 	private Timer timer;
-	//private int time;
 
+
+	private static boolean two_player = true;
+	
 	public SetupClass(String title) {
 		super(title);
 		
@@ -43,7 +46,9 @@ public class SetupClass extends BasicGame {
 	public void init(GameContainer container) throws SlickException {
 
 		player = new Player(1, 2, (byte) 3);
+		player2 = new Player(5, 6, (byte)3);
 		player.init(container);
+		player2.init(container);
 		timer = new Timer();
 		block = new Block(1, 2, (byte)3);
 		block.init(container);
@@ -65,16 +70,34 @@ public class SetupClass extends BasicGame {
 		else if (input.isKeyDown(Input.KEY_W)){
 			player.moveUp();
 		}
+
+		
+		if (input.isKeyDown(Input.KEY_RIGHT)){
+			player2.moveRight();
+		}
+		else if (input.isKeyDown(Input.KEY_LEFT)){
+			player2.moveLeft();
+		}
+		else if (input.isKeyDown(Input.KEY_UP)){
+			player2.moveUp();
+		}
+		else if (input.isKeyDown(Input.KEY_DOWN)){
+			player2.moveDown();
+		}
+
 		timer.update(delta);
+
 
 	}
 
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		player.render(container, g);
+
+		if (two_player){
+		player2.render(container, g);}
 		timer.render(g);
 		block.render(container, g);
 		//g.drawString(Integer.toString(time),0,0);
-
 
 	}
 	public static void main(String[] args) throws SlickException {
