@@ -49,6 +49,14 @@ public class SetupClass extends BasicGame {
 		super(title);
 		
 	}
+	
+	public boolean occupiedSlot(int coordX, int coordY)
+	{
+		if (grid[coordX][coordY] != 0)
+			return true;
+		else
+			return false;
+	}
 	@Override
 	public void init(GameContainer container) throws SlickException {
 

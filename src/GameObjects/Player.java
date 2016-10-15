@@ -12,7 +12,7 @@ public class Player extends GameObject{
 	private static int x = 64;
 	private static int y = 64;
 	private int facing = 90;
-	private static int moveSpeed = 1;
+	private static int moveSpeed = 2;
 	
 	
 	
@@ -36,7 +36,7 @@ public class Player extends GameObject{
 	}
 	
 	public void init(GameContainer container) throws SlickException{
-		WalkSprite = new SpriteSheet("src/res/DINODEANWeaponPNG.png", 64, 64);
+		WalkSprite = new SpriteSheet("src/res/DINODEANWeaponPNG.png", SCALE, SCALE);
 		WalkAnimation = new Animation(WalkSprite, 100);
 		
 	}
