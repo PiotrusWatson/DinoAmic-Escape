@@ -49,8 +49,6 @@ public class SetupClass extends BasicGame {
 	}
 
 	public void render(GameContainer container, Graphics arg1) throws SlickException {
-		//Image img = new Image("src/res/testimage.png");
-		//img.draw(this.x,this.y);
 		dinoAnimation.draw(this.x, this.y);
 	}
 	public static void main(String[] args) throws SlickException {

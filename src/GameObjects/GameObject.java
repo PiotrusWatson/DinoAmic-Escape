@@ -5,7 +5,7 @@ public class GameObject {
 	
 	private int xCoord;
 	private int yCoord;
-	private byte layer;
+	public byte layer;
 	
 	public int getXCoord(){
 		return xCoord;
