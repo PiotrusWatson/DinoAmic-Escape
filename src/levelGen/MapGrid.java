@@ -3,7 +3,11 @@ package levelGen;
 import java.util.Random;
 
 public class MapGrid {
-	
+	/*
+	 * 0 = Exit
+	 * 1 = Empty
+	 * 2 = Block .. and so on
+	 */
 	//Stores a grid of numbers where each number represents a game object
 	int[][] grid;
 	

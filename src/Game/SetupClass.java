@@ -52,13 +52,13 @@ public class SetupClass extends BasicGame {
 		if (input.isKeyDown(Input.KEY_S)){
 			player.moveDown();
 		}
-		if (input.isKeyDown(Input.KEY_A)){
+		else if (input.isKeyDown(Input.KEY_A)){
 			player.moveLeft();
 		}
-		if (input.isKeyDown(Input.KEY_D)){
+		else if (input.isKeyDown(Input.KEY_D)){
 			player.moveRight();
 		}
-		if (input.isKeyDown(Input.KEY_W)){
+		else if (input.isKeyDown(Input.KEY_W)){
 			player.moveUp();
 		}
 		time = timer.update(delta);
