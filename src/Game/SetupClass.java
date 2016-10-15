@@ -19,6 +19,7 @@ import GameObjects.Player;
 import GameObjects.GameObject;
 import GameObjects.Metiorite;
 import GameObjects.Timer;
+import endGame.endGame;
 import levelGen.MapGrid;
 import GameObjects.Block;
 import GameObjects.ExitTile;
@@ -77,7 +78,14 @@ public class SetupClass extends BasicGame {
 	
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
-		
+		// win state
+		if (player.xCoord == exit.xCoord && player.yCoord == exit.yCoord){
+			int time = timer.getTime();
+			String time2 = String(time);
+			endGame.finish(time2);
+			
+			
+		}
 		
 		
 		if(timer.getTime()<= 0){
@@ -133,6 +141,10 @@ public class SetupClass extends BasicGame {
 
 	}
 
+	private String String(int time) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	public void render(GameContainer container, Graphics g) throws SlickException {
 
 
