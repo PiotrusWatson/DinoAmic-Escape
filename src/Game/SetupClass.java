@@ -97,6 +97,10 @@ public class SetupClass extends BasicGame {
 			
 		}
 
+		else if (input.isKeyPressed(Input.KEY_SPACE)){
+			player.headButt(grid, block);
+		}
+		
 		timer.update(delta);
 		
 		if(timer.getTime() == 0 || timer.getTime() < 0){

@@ -27,12 +27,12 @@ public class Player extends GameObject{
 	}
 	
 	public int getArrayPosX(){
-		return this.xCoord / SCALE;
+		return ((this.xCoord / SCALE) );
 	}
 	
 	
 	public int getArrayPosY(){
-		return this.yCoord / SCALE;
+		return (this.yCoord / SCALE);
 	}
 	
 	public void init(GameContainer container) throws SlickException{
@@ -76,6 +76,37 @@ public class Player extends GameObject{
 			}
 		}
 
+	}
+	public void headButt(int[][] grid, Block block){
+		if (this.facing == 0){
+			if (!isAllowedUp(grid, block)){
+				int j = this.getArrayPosX();
+				int i = this.getArrayPosY();
+				grid[i-2][j-1] = 1;
+			}
+		}
+		else if (this.facing == 90){
+			if (!isAllowedRight(grid, block)){
+				int j = this.getArrayPosX() ;
+				int i = this.getArrayPosY();
+				grid[i-1][j] = 1;
+			}
+		}
+		else if (this.facing == 180){
+			if (!isAllowedDown(grid, block)){
+				int j = this.getArrayPosX();
+				int i = this.getArrayPosY();
+				grid[i][j-1] = 1;
+			}
+		}
+		else if (this.facing == 270){
+			if (!isAllowedLeft(grid, block)){
+				int j = this.getArrayPosX() ;
+				int i = this.getArrayPosY();
+				grid[i-1][j-2] = 1;
+			}
+		}
+		
 	}
 	
 	public boolean isAllowedLeft(int[][] grid, Block block){

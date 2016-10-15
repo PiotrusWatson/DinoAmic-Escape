@@ -12,7 +12,7 @@ public class Timer extends GameObject {
 	int time;
 	public Timer(){
 		super(0,0,(byte)0);
-		time = 30000;
+		time = 30000000;
 	}
 	
 	public void update(int delta){
