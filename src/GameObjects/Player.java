@@ -53,10 +53,12 @@ public class Player extends GameObject{
 	}
 	public void moveRight(int[][] grid){
 		facing = 90;
-		this.xCoord += moveSpeed;
-		if(xCoord >= (grid[0].length)*64){
-			this.xCoord -= moveSpeed;
-		}
+			this.xCoord += moveSpeed;
+			if(xCoord >= (grid[0].length)*64){
+				this.xCoord -= moveSpeed;
+			}
+		
+
 	}
 	public void moveUp(){
 		facing = 0;
@@ -79,6 +81,5 @@ public class Player extends GameObject{
 		// TODO Auto-generated method stub
 		
 	}
-
 	
 }
