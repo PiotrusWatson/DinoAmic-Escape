@@ -27,6 +27,7 @@ public class SetupClass extends BasicGame {
 	public Player player2;
 	public MapGrid map;
 	public int[][] grid;
+	public static int fps = 60;
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
@@ -120,6 +121,7 @@ public class SetupClass extends BasicGame {
 	}
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new SetupClass("Setup Test"));
+		app.setTargetFrameRate(fps);
 		app.setDisplayMode(windowWidth, windowHeight, fullScreen);
 		app.start();
 		
