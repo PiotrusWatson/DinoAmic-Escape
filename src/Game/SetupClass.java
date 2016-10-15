@@ -106,6 +106,10 @@ public class SetupClass extends BasicGame {
 		}
 
 		timer.update(delta);
+		
+		if(timer.getTime() == 0 || timer.getTime() < 0){
+			
+		}
 
 
 	}
