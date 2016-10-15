@@ -51,10 +51,13 @@ public class Player extends GameObject{
 			this.xCoord += moveSpeed;
 		}
 	}
-	public void moveRight(){
+	public void moveRight(int[][] grid){
 		facing = 90;
 		this.xCoord += moveSpeed;
-		if(xCoo)
+
+		if(xCoord >= (grid[0].length)*64){
+			this.xCoord -= moveSpeed;
+		}
 	}
 	public void moveUp(){
 		facing = 0;
@@ -63,9 +66,12 @@ public class Player extends GameObject{
 			this.yCoord += moveSpeed;
 		}
 	}
-	public void moveDown(){
+	public void moveDown(int[][] grid){
 		facing = 180;
 		this.yCoord += moveSpeed;
+		if(yCoord >= (grid.length)*64){
+			this.yCoord -= moveSpeed;
+		}
 
 	}
 	public void render(GameContainer container, Graphics g) throws SlickException{
