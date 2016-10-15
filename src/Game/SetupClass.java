@@ -112,8 +112,12 @@ public class SetupClass extends BasicGame {
 		player2.render(container, g);}
 		timer.render(g, windowWidth); //window width needed for timer bar
 		block.render(container, g);
+		
+		
 
-		//met.render(container,g,timer.getTime());
+		met.render(container,g,(int)(windowWidth/64),(int)(windowHeight/64));
+
+		
 
 		for(int i = 0; i < grid.length;i++){
 			for(int j = 0; j < grid[0].length; j++){
@@ -124,6 +128,7 @@ public class SetupClass extends BasicGame {
 				}
 			}
 		}
+		
 
 
 	}

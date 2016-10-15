@@ -11,6 +11,9 @@ public class Metiorite extends GameObject {
 	private Image img;
 	private int rate;
 	private int[] ranArray;
+	private boolean isMet;
+	private int x;
+	private int y;
 	
 	public Metiorite(int difficulty) throws SlickException  {
 		super(0, 0, (byte)0);
@@ -32,9 +35,24 @@ public class Metiorite extends GameObject {
 
 
 	
-	public void render(GameContainer container, Graphics g, int time) throws SlickException{
-			img.draw(50 ,50);
+	public void render(GameContainer container, Graphics g,int noCol, int noRows) throws SlickException{
 
+
+		img = new Image("src/res/met.png");
+		
+		if(isMet){
+			img.draw(x,y);	
+		}
+		
+		int random = (int)(Math.random()*100);
+		if(random == 0){
+			x = (int)((Math.random()*noCol)*64);
+			y = (int)((Math.random()* noRows)*64);
+			img.draw(x,y);
+			isMet = true;
+		} else if(isMet){
+			img.draw(x,y);	
+		}
 
 
 		// TODO Auto-generated method stub
