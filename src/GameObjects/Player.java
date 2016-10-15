@@ -12,7 +12,7 @@ public class Player extends GameObject{
 	private static int x = 64;
 	private static int y = 64;
 	private int facing = 90;
-	private static int moveSpeed = 1;
+	private static int moveSpeed = 64;
 	
 	
 	
@@ -46,34 +46,92 @@ public class Player extends GameObject{
 	
 	public void moveLeft(){
 		facing = 270;
-		this.xCoord -= moveSpeed;
-		if( xCoord <= 64){
-			this.xCoord += moveSpeed;
-		}
-	}
-	public void moveRight(int[][] grid){
-		facing = 90;
-		this.xCoord += moveSpeed;
-
-		if(xCoord >= (grid[0].length)*64){
+		
+		if( xCoord > 64){
 			this.xCoord -= moveSpeed;
 		}
 	}
+	public void moveRight(int[][] grid, Block block){
+		facing = 90;
+		if(xCoord < (grid[0].length)*64){
+			if (isAllowedRight(grid, block) == true){
+				this.xCoord += moveSpeed;}
+			System.out.println(isAllowedRight(grid, block));}
+	}
 	public void moveUp(){
 		facing = 0;
-		this.yCoord -= moveSpeed;
-		if( yCoord <= 64){
-			this.yCoord += moveSpeed;
-		}
+		if (this.yCoord > 64){
+		this.yCoord -= moveSpeed;}
+
 	}
 	public void moveDown(int[][] grid){
 		facing = 180;
-		this.yCoord += moveSpeed;
-		if(yCoord >= (grid.length)*64){
-			this.yCoord -= moveSpeed;
+		if(yCoord < (grid.length)*64){
+			this.yCoord += moveSpeed;
 		}
 
 	}
+	/*
+	public boolean isAllowedLeft(int[][] grid, Block block){
+		boolean allowed = true;
+		for (int i = 0; i < grid.length; i++){
+			for (int j = 0; j<grid[0].length; j++){
+				block.yCoord = (i+1)*64;
+				block.xCoord = (j+1)*64;
+				if (grid[i][j] == 2){
+					if ((this.xCoord - 64 >= block.xCoord + 64) && (this.yCoord >= block.yCoord + 64 || this.yCoord + 64 >= block.yCoord)){
+						allowed = false;
+					}
+				}
+			}
+		}
+		return allowed;
+	}*/
+	public boolean isAllowedRight(int[][] grid, Block block){
+		boolean allowed = true;
+		for (int i = 0; i < grid.length; i++){
+			for (int j = 0; j<grid[0].length; j++){
+				block.yCoord = (i)*64;
+				block.xCoord = (j)*64;
+				if (grid[i][j] == 2){
+					if (((this.xCoord + 128 >= block.xCoord) && (this.xCoord + 128 <= block.xCoord+64))&& (this.yCoord + 64 > block.yCoord + 64 && this.yCoord < block.yCoord + 64)){
+						allowed = false;
+					}
+				}
+			}
+		}
+		return allowed;
+	}/*
+	public boolean isAllowedUp(int[][] grid, Block block){
+		boolean allowed = true;
+		for (int i = 0; i < grid.length; i++){
+			for (int j = 0; j<grid[0].length; j++){
+				block.yCoord = (i+1)*64;
+				block.xCoord = (j+1)*64;
+				if (grid[i][j] == 2){
+					if ((this.xCoord - 64 >= block.xCoord + 64) && (this.yCoord >= block.yCoord + 64 || this.yCoord + 64 >= block.yCoord)){
+						allowed = false;
+					}
+				}
+			}
+		}
+		return allowed;
+	}
+	public boolean isAllowedDown(int[][] grid, Block block){
+		boolean allowed = true;
+		for (int i = 0; i < grid.length; i++){
+			for (int j = 0; j<grid[0].length; j++){
+				block.yCoord = (i+1)*64;
+				block.xCoord = (j+1)*64;
+				if (grid[i][j] == 2){
+					if ((this.xCoord + 64 >= block.xCoord || this.xCoord) && (this.yCoord >= block.yCoord + 64 || this.yCoord + 64 >= block.yCoord)){
+						allowed = false;
+					}
+				}
+			}
+		}
+		return allowed;
+	}*/
 	public void render(GameContainer container, Graphics g) throws SlickException{
 		WalkAnimation.getCurrentFrame().setRotation(facing);
 		WalkAnimation.draw(this.xCoord, this.yCoord);
