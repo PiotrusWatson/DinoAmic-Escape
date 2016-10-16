@@ -1,5 +1,6 @@
 package Game;
 import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.ScalableGame;
 import org.newdawn.slick.SlickException;
@@ -16,14 +17,16 @@ public class Main extends StateBasedGame{
 		
 	}
 	
-	public static int windowWidth = 1000;
-	public static int windowHeight = 700;
+	public static int windowWidth = 1920;
+	public static int windowHeight = 1080;
 	
-	public static int width = 1000; //determines actual width of game
-	public static int height = 700; //ditto with actual height of game
+	public static int width = 2000; //determines actual width of game
+	public static int height = 1400; //ditto with actual height of game
 	
 	public static final int MAXWIDTH = 2000;
 	public static final int MAXHEIGHT = 1400;
+	
+	public static ScalableGame sg;
 	
 	public static void setWidth(int w){
 		width = w;
@@ -34,21 +37,24 @@ public class Main extends StateBasedGame{
 	}
 	
 	
-	public static void updateSize(int updater)
+	public static void updateSize(int updater) throws SlickException
 	{
 		if (width <= MAXWIDTH && height <= MAXHEIGHT){
 			width += updater;
-			height += updater;
+			height +=updater;
+			sg.recalculateScale();
 		}
 	}
 
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app;
-		app = new AppGameContainer(new ScalableGame(new Main("Default Title"), width, height));
-		app.setDisplayMode(windowWidth, windowHeight, false);
+		sg = new ScalableGame((Game) new Main("Default Title"), width, height);
+		app = new AppGameContainer(sg);
+		app.setDisplayMode(windowWidth, windowHeight, true);
 		app.setAlwaysRender(true);
 		app.start();
 	}
+	
 
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException {

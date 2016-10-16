@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.Image;
 
+import levelGen.MapGrid;
 public class Metiorite extends GameObject {
 	private Image shadow;
 	private Image met;
