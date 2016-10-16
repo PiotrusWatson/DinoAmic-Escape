@@ -97,7 +97,7 @@ public class SetupClass extends BasicGameState {
 	}
 
 	@Override
-	public void init(GameContainer container, StateBasedGame arg1) throws SlickException {
+	public void init(GameContainer container, StateBasedGame sbg) throws SlickException {
 		player = new Player(1, 2);
 		player2 = new Player(5, 6);
 		player.init(container);
@@ -118,7 +118,7 @@ public class SetupClass extends BasicGameState {
 	}
 
 	@Override
-	public void render(GameContainer container, StateBasedGame arg1, Graphics g) throws SlickException {
+	public void render(GameContainer container, StateBasedGame sbg, Graphics g) throws SlickException {
 
 		if (two_player){
 		player2.render(container, g);}
@@ -160,7 +160,7 @@ public class SetupClass extends BasicGameState {
 	}
 
 	@Override
-	public void update(GameContainer container, StateBasedGame arg1, int delta) throws SlickException {
+	public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException {
 		// win state
 				if (player.xCoord == exit.xCoord && player.yCoord == exit.yCoord){
 					int time = timer.getTime();
@@ -169,8 +169,8 @@ public class SetupClass extends BasicGameState {
 					score += time;
 					MapGrid.level += 1;
 					Main.updateSize(40);
-					arg1.getState(arg1.getCurrentStateID()).init(container, arg1);
-					arg1.enterState(arg1.getCurrentStateID());
+					sbg.getState(sbg.getCurrentStateID()).init(container, sbg);
+					sbg.enterState(sbg.getCurrentStateID());
 				}
 				
 				
