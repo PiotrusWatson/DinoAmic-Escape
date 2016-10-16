@@ -52,6 +52,15 @@ public class GameObject {
 		this.layer = layer;
 	}*/
 	
+	public int getArrayPosX(){
+		return ((this.xCoord / SCALE) );
+	}
+	
+	
+	public int getArrayPosY(){
+		return (this.yCoord / SCALE);
+	}
+	
 	public GameObject(int xCoord, int yCoord)
 	{
 		this.xCoord = xCoord;

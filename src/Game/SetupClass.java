@@ -14,6 +14,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.ScalableGame;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.state.StateBasedGame;
 
 //import com.sun.javafx.geom.Rectangle;
 
@@ -53,14 +54,37 @@ public class SetupClass extends BasicGame {
 	private static int windowWidth = 1000;
 	private static int windowHeight = 700;
 	
-	private static int width = windowWidth; //determines actual width of game
-	private static int height = windowHeight; //ditto with actual height of game
+	private static int width = 1000; //determines actual width of game
+	private static int height = 700 ; //ditto with actual height of game
+	
+	public static final int MAXWIDTH = 2000;
+	public static final int MAXHEIGHT = 1400;
+	
 	private static boolean fullScreen = false;
-
-
+	
+	
 	private Timer timer;
+	public static int score = 0;
 	private static boolean two_player = false; // set to true for two players
 
+	
+	public static void setWidth(int w){
+		width = w;
+	}
+	
+	public static void setHeight(int h){
+		height = h;
+	}
+	
+	
+	public static void updateSize(int updater)
+	{
+		if (width < MAXWIDTH && height < MAXHEIGHT){
+			width += updater;
+			height += updater;
+		}
+	}
+	
 	
 	public SetupClass(String title) {
 		super(title);
@@ -88,7 +112,7 @@ public class SetupClass extends BasicGame {
 		block.init(container);
 		floor = new Floor(1, 2);
 		floor.init(container);
-		map=new MapGrid(((windowWidth/64)-1),((windowHeight/64)-1));
+		map=new MapGrid(((width/64)-1),((height/64)-1));
 		map.generateGrid(2);
 		grid = map.getGrid();
 		exit = new ExitTile(1, 2);
@@ -102,8 +126,12 @@ public class SetupClass extends BasicGame {
 		// win state
 		if (player.xCoord == exit.xCoord && player.yCoord == exit.yCoord){
 			int time = timer.getTime();
-			String time2 = String(time);
-			endGame.finish(time2);
+			/*String time2 = String(time);
+			endGame.finish(time2);*/
+			score += time;
+			MapGrid.level += 1;
+			updateSize(40);
+			
 			
 			
 		}

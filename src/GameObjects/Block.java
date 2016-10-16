@@ -14,6 +14,7 @@ public class Block extends GameObject{
 	private Animation explode;
 	private Image blockStatic;
 	public int health;
+	final public static int ID = 2;
 	//public Image floor;
 	
 	
