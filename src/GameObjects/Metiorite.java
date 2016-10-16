@@ -15,6 +15,8 @@ public class Metiorite extends GameObject {
 	private boolean isMet;
 	private int x;
 	private int y;
+	private int xIndex;
+	private int yIndex;
 	private int time = 0;
 	
 	public Metiorite(int difficulty) throws SlickException  {
@@ -37,30 +39,35 @@ public class Metiorite extends GameObject {
 
 
 	
-	public void render(GameContainer container, Graphics g,int noCol, int noRows) throws SlickException{
+	public void render(GameContainer container, Graphics g,int noCol, int noRows, int playerX, int playerY) throws SlickException{
 
-
-		System.out.println(noCol + " " + noRows);
 		met = new Image("src/res/met.png");
 		shadow = new Image("src/res/shadow.png");
 
 		
-		int random = (int)(Math.random()*100);		
+		int random = (int)(Math.random()*1000);		
 		if(isMet){
-			if(time<500){
+			if(time<1000){
 				shadow.draw(x,y);
-			} else if(time < 1000){
+			} else if(time < 2000){
 				met.draw(x,y);
 			} else {
 				isMet = false;
 			}
 
-			
 		} else if(random == 0){
-			x = 64 + ((int)(Math.random()*noCol)*64);
-			y = 64 + ((int)(Math.random()* noRows)*64);
-
-			System.out.println(x + " " + y);
+			int random2 = (int)(Math.random() *3);
+			if(random2 ==0){
+				xIndex = playerX-1;
+				yIndex = playerY-1;			
+			} else {
+				xIndex = (int)(Math.random()*noCol);
+				yIndex = (int)(Math.random()* noRows);
+			}
+			
+			x = 64 + (xIndex*64);
+			y = 64 + (yIndex*64);
+			
 			shadow.draw(x,y);
 			isMet = true;
 			time = 0;
@@ -70,17 +77,14 @@ public class Metiorite extends GameObject {
 		// TODO Auto-generated method stub
 		
 	}
-	//public void render(Graphics g,int time){
-
-		/*
-		for(int i=0;i<rate;i++){
-			System.out.println(time + " " + ranArray[i]);
-			if(time > (ranArray[i] * 10) && time < ((ranArray[i] * 10) + 100)){
-				img.draw(50,50);
-			}
-		}
-		*/
-
-	//}
+	public int getX(){
+		return xIndex;}
+	
+	public int getY(){
+		return yIndex;
+	}
+	public int getTime(){
+		return time;
+	}
 
 }

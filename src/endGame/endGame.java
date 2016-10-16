@@ -5,12 +5,11 @@ import java.util.*;
 
 public class endGame {
 
-	public static void main(String[] args) {
+	public static void finish(String score) {
 
 		// Initialising variables and files
-		// change this to take input from other classes as the users' score
-		// ***IMPORTANT***
-		String userScore = "2800";
+		String userScore = score;
+		//String userScore = "2800";
 
 		List<String[]> scores = new ArrayList<String[]>();
 		List<String[]> sortedScores = new ArrayList<String[]>();
@@ -79,7 +78,7 @@ public class endGame {
 		String userName = standardInput.nextLine();
 		standardInput.close();
 
-		// the username and password are then appended onto the leaderboard
+		// the username and score are then appended onto the leaderboard
 		String[] appendArray = { userName, userScore };
 		sortedScores.add(appendArray);
 
@@ -102,4 +101,5 @@ public class endGame {
 			e.printStackTrace();
 		}
 	}
-}
+
+	}

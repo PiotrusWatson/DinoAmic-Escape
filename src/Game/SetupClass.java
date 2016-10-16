@@ -13,12 +13,17 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import com.sun.javafx.geom.Rectangle;
+
 import GameObjects.Player;
 import GameObjects.GameObject;
 import GameObjects.Metiorite;
 import GameObjects.Timer;
+import endGame.endGame;
 import levelGen.MapGrid;
 import GameObjects.Block;
+import GameObjects.ExitTile;
+//import org.newdawn.slick.geom.Rectangle;
 
 
 
@@ -30,6 +35,8 @@ public class SetupClass extends BasicGame {
 	public MapGrid map;
 	public int[][] grid;
 	public static int fps = 1000;
+	public boolean reduced = false;
+	public ExitTile exit;
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
@@ -71,53 +78,89 @@ public class SetupClass extends BasicGame {
 		map=new MapGrid(((windowWidth/64)-1),((windowHeight/64)-1));
 		map.generateGrid(2);
 		grid = map.getGrid();
+		exit = new ExitTile(1, 2, (byte)3);
+		exit.init(container);
 		
 		
 	}
 	
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
+		// win state
+		if (player.xCoord == exit.xCoord && player.yCoord == exit.yCoord){
+			int time = timer.getTime();
+			String time2 = String(time);
+			endGame.finish(time2);
+			
+			
+		}
+		
+		
 		if(timer.getTime()<= 0){
 			System.exit(0);
 		}
 
 		Input input = container.getInput();
-		if (input.isKeyDown(Input.KEY_S)){
-			player.moveDown(grid);
+		if (input.isKeyPressed(Input.KEY_S)){
+			player.moveDown(grid, block);
+			player.headbutting = false;
+
 		}
-		else if (input.isKeyDown(Input.KEY_A)){
-			player.moveLeft();
+		else if (input.isKeyPressed(Input.KEY_A)){
+			player.moveLeft(grid,block);
+			player.headbutting = false;
+
 			
 		}
-		else if (input.isKeyDown(Input.KEY_D)){
+		else if (input.isKeyPressed(Input.KEY_D)){
 			
-			player.moveRight(grid);
+			player.moveRight(grid, block);
+			player.headbutting = false;
+
 			
 		}
-		else if (input.isKeyDown(Input.KEY_W)){
-			player.moveUp();
+		else if (input.isKeyPressed(Input.KEY_W)){
+			player.moveUp(grid, block);
+			player.headbutting = false;
 			
 		}
 
+		else if (input.isKeyPressed(Input.KEY_SPACE)){
+			boolean valid =player.headButt(grid, block);
+			if(valid){
+				timer.reduce(2000);
+				player.headbutting = true;
+			}
+		}
 		
-		if (input.isKeyDown(Input.KEY_RIGHT)){
-			player2.moveRight(grid);
+		timer.update(delta);
+		
+		if(timer.getTime() == 0 || timer.getTime() < 0){
+			
 		}
-		else if (input.isKeyDown(Input.KEY_LEFT)){
-			player2.moveLeft();
+		
+		if(met.getTime() > 1000){
+			grid[met.getY()][met.getX()] = 1;
+			if(met.getY() == player.getArrayPosY() -1 && met.getX() == player.getArrayPosX()-1){
+				if(reduced == false){
+					timer.reduce(10000);	
+					reduced = true;
+				}
+				
+			}
 		}
-		else if (input.isKeyDown(Input.KEY_UP)){
-			player2.moveUp();
-		}
-		else if (input.isKeyDown(Input.KEY_DOWN)){
-			player2.moveDown(grid);
+		if(met.getTime()<1000){
+			reduced = false;
 		}
 
-		timer.update(delta);
 		met.update(delta);
 
 	}
 
+	private String String(int time) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	public void render(GameContainer container, Graphics g) throws SlickException {
 
 
@@ -126,9 +169,6 @@ public class SetupClass extends BasicGame {
 		timer.render(g, windowWidth); //window width needed for timer bar
 		block.render(container, g,false);
 		
-		//for(int row=0;row<(int)(WindowHeight/64);row++){
-			//for(int col=0;col<(int)(wind))
-		//}
 		
 
 
@@ -141,13 +181,23 @@ public class SetupClass extends BasicGame {
 				block.xCoord = (j+1)*64;
 				if (grid[i][j] == 2){
 					isRock = true;
+					if((i == met.getY()) && j == met.getX()){
+						grid[i][j] = 1;
+						isRock = false;
+
+					}
 				}
 				block.render(container, g,isRock);
 				isRock = false;
+				if(grid[i][j] == 0){
+					exit.yCoord = (i+1)*64;
+					exit.xCoord = (j+1)*64;
+					exit.render(container, g);
+				}
 			}
 		}
 		player.render(container, g);
-		met.render(container,g,grid[0].length,grid.length);
+		met.render(container,g,grid[0].length,grid.length,player.getArrayPosX(),player.getArrayPosY());
 
 
 	}

@@ -31,6 +31,8 @@ public class Timer extends GameObject {
 		g.setColor(Color.white);
 		g.drawString(Integer.toString(time),500,20);}
 	}
-	
+	public void reduce(int value){
+		time -= value;
+	}
 	
 }

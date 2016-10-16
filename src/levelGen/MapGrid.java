@@ -35,15 +35,11 @@ public class MapGrid {
 			}
 		}
 		
-		randNumber = rand.nextInt(rows);
-		grid[randNumber][0]= 1;
+		grid[5][0]= 1;
 		
 		randNumber = rand.nextInt(rows);
 		grid[randNumber][cols]= 0 ;
 		
-		
-		
-	
 	}
 		
 
@@ -57,12 +53,13 @@ public class MapGrid {
 		return "Grid height: " + grid.length + " Grid Length: " + grid[0].length + " array: " + array;
 	}
 	
+	/*
 	public static void main(String[] args){
 		MapGrid map = new MapGrid(4,4);
 		map.generateGrid(4);
 		System.out.println(map);
 	}
-	
+	*/
 	
 
 	public int[][] getGrid() {
