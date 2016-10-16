@@ -6,7 +6,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
-
+import GameObjects.Timer;
 
 public class Player extends GameObject{
 	private static int x = 64;
@@ -21,24 +21,24 @@ public class Player extends GameObject{
 	private SpriteSheet HeadbuttSprite;
 	private Animation HeadbuttAnimation;
 	
-	public Player(int xCoord, int yCoord, byte layer) throws SlickException {
-		super(x, y, layer);
+	public Player(int xCoord, int yCoord) throws SlickException {
+		super(x, y);
 
 		
 		// TODO Auto-generated constructor stub
 	}
 	
-	public int getArrayPosX(){
+	/*public int getArrayPosX(){
 		return ((this.xCoord / SCALE) );
 	}
 	
 	
 	public int getArrayPosY(){
 		return (this.yCoord / SCALE);
-	}
+	}*/
 	
 	public void init(GameContainer container) throws SlickException{
-		WalkSprite = new SpriteSheet("src/res/DINODEANWeaponPNG.png", 64, 64);
+		WalkSprite = new SpriteSheet("src/res/DINODEANWeaponPNG.png", SCALE, SCALE);
 		WalkAnimation = new Animation(WalkSprite, 100);
 		HeadbuttSprite = new SpriteSheet("src/res/DDGlasgow123.png", 64, 64);
 		HeadbuttAnimation = new Animation(HeadbuttSprite, 100); //change from 100 if cycles too fast
@@ -191,6 +191,9 @@ public class Player extends GameObject{
 		}
 		// TODO Auto-generated method stub
 		
+	}
+	public void takeDamage(){
+		//add animation for taking damage here
 	}
 	
 }

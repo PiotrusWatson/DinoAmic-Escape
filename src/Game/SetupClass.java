@@ -6,14 +6,17 @@ import java.awt.event.InputEvent;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.ScalableGame;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.state.StateBasedGame;
 
-import com.sun.javafx.geom.Rectangle;
+//import com.sun.javafx.geom.Rectangle;
 
 import GameObjects.Player;
 import GameObjects.GameObject;
@@ -24,14 +27,19 @@ import levelGen.MapGrid;
 import GameObjects.Block;
 import GameObjects.ExitTile;
 //import org.newdawn.slick.geom.Rectangle;
+import GameObjects.Floor;
 
 
 
 public class SetupClass extends BasicGame {
 	public Player player;
-	public Block block;
 	public Player player2;
+	
+	public Block block;
+	public Floor floor;
 	public Metiorite met;
+	
+	
 	public MapGrid map;
 	public int[][] grid;
 	public static int fps = 1000;
@@ -45,32 +53,69 @@ public class SetupClass extends BasicGame {
 
 	private static int windowWidth = 1000;
 	private static int windowHeight = 700;
+	
+	private static int width = 1000; //determines actual width of game
+	private static int height = 700 ; //ditto with actual height of game
+	
+	public static final int MAXWIDTH = 2000;
+	public static final int MAXHEIGHT = 1400;
+	
 	private static boolean fullScreen = false;
-
-
+	
+	
 	private Timer timer;
+	public static int score = 0;
 	private static boolean two_player = false; // set to true for two players
 
+	
+	public static void setWidth(int w){
+		width = w;
+	}
+	
+	public static void setHeight(int h){
+		height = h;
+	}
+	
+	
+	public static void updateSize(int updater)
+	{
+		if (width < MAXWIDTH && height < MAXHEIGHT){
+			width += updater;
+			height += updater;
+		}
+	}
+	
 	
 	public SetupClass(String title) {
 		super(title);
 		
 	}
+	
+	public boolean occupiedSlot(int coordX, int coordY)
+	{
+		if (grid[coordX][coordY] != 0)
+			return true;
+		else
+			return false;
+	}
 	@Override
 	public void init(GameContainer container) throws SlickException {
 
-		player = new Player(1, 2, (byte) 3);
-		player2 = new Player(5, 6, (byte)3);
+		player = new Player(1, 2);
+		player2 = new Player(5, 6);
 		player.init(container);
 		player2.init(container);
 		timer = new Timer();
 		met = new Metiorite(0);
-		block = new Block(1, 2, (byte)3);
+		
+		block = new Block(1, 2);
 		block.init(container);
-		map=new MapGrid(((windowWidth/64)-1),((windowHeight/64)-1));
+		floor = new Floor(1, 2);
+		floor.init(container);
+		map=new MapGrid(((width/64)-1),((height/64)-1));
 		map.generateGrid(2);
 		grid = map.getGrid();
-		exit = new ExitTile(1, 2, (byte)3);
+		exit = new ExitTile(1, 2);
 		exit.init(container);
 		
 		
@@ -81,8 +126,12 @@ public class SetupClass extends BasicGame {
 		// win state
 		if (player.xCoord == exit.xCoord && player.yCoord == exit.yCoord){
 			int time = timer.getTime();
-			String time2 = String(time);
-			endGame.finish(time2);
+			/*String time2 = String(time);
+			endGame.finish(time2);*/
+			score += time;
+			MapGrid.level += 1;
+			updateSize(40);
+			
 			
 			
 		}
@@ -159,28 +208,30 @@ public class SetupClass extends BasicGame {
 		if (two_player){
 		player2.render(container, g);}
 		timer.render(g, windowWidth); //window width needed for timer bar
-		block.render(container, g,false);
+		block.render(container, g);
 		
 		
 
-
-
-		
-		boolean isRock = false;
 		for(int i = 0; i < grid.length;i++){
 			for(int j = 0; j < grid[0].length; j++){
-				block.yCoord = (i+1)*64;
-				block.xCoord = (j+1)*64;
+				floor.yCoord = (i+1)*64;
+				floor.xCoord = (j+1)*64;
+				floor.render(container, g);
+				
+				
 				if (grid[i][j] == 2){
-					isRock = true;
+					//sets it to place a block
+					
+					block.yCoord = (i+1)*64;
+					block.xCoord = (j+1)*64;
+					block.render(container, g);
+					
 					if((i == met.getY()) && j == met.getX()){
 						grid[i][j] = 1;
-						isRock = false;
 
 					}
 				}
-				block.render(container, g,isRock);
-				isRock = false;
+				
 				if(grid[i][j] == 0){
 					exit.yCoord = (i+1)*64;
 					exit.xCoord = (j+1)*64;
@@ -194,7 +245,7 @@ public class SetupClass extends BasicGame {
 
 	}
 	public static void main(String[] args) throws SlickException {
-		AppGameContainer app = new AppGameContainer(new SetupClass("Setup Test"));
+		AppGameContainer app = new AppGameContainer((Game) new ScalableGame(new SetupClass("Setup Test"), width, height));
 		app.setDisplayMode(windowWidth, windowHeight, fullScreen);
 		app.start();
 		
