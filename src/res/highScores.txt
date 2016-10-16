@@ -3,4 +3,3 @@ Jack Jarvis,17759
 bob,14637
 d,8319
 h,0
-null,0

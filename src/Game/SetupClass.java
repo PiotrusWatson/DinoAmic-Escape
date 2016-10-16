@@ -215,6 +215,7 @@ public class SetupClass extends BasicGameState {
 					gameOver.play();
 					String userScore = Integer.toString(score);
 					endGame.finish(userScore);
+					score = 0;
 					sbg.getState(0).init(container, sbg);
 					sbg.enterState(0);
 				}
