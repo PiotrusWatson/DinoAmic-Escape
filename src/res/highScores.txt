@@ -2,9 +2,3 @@ hi,28149
 Jack Jarvis,17759
 bob,14637
 brodie,0
-null,0
-null,0
-null,0
-null,0
-null,0
-null,0
