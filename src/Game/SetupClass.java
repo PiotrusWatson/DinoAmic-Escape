@@ -16,6 +16,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.Sound;
 
 //import com.sun.javafx.geom.Rectangle;
 
@@ -48,6 +49,11 @@ public class SetupClass extends BasicGameState {
 	public static int fps = 1000;
 	public boolean reduced = false;
 	public ExitTile exit;
+	
+	public Sound meteorHit;
+	public Sound grunt;
+	public Sound levelEnd = new Sound("src/res/levelEnd.ogg");
+	public Sound rockBreak = new Sound("src/res/meteorstrke.ogg");
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
@@ -114,6 +120,11 @@ public class SetupClass extends BasicGameState {
 		grid = map.getGrid();
 		exit = new ExitTile(1, 2);
 		exit.init(container);
+		
+		meteorHit = new Sound("src/res/rockbreak.ogg");
+		grunt = new Sound("src/res/grunt.ogg");
+		
+
 		
 	}
 
