@@ -11,6 +11,7 @@ public class MapGrid {
 	//Stores a grid of numbers where each number represents a game object
 	int[][] grid;
 	
+	
 	public MapGrid(int length, int height){
 		grid = new int[height][length];
 	}

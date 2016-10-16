@@ -7,28 +7,24 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.Image;
 
-
-public class ExitTile extends GameObject{
+public class Floor extends GameObject{
 	
-	public Image door;
-	
-	
-	public ExitTile(int xCoord, int yCoord) throws SlickException{
-		super(xCoord, yCoord);
-		// TODO Auto-generated constructor stub
-	}
+	public Image floorSprite;
 	
 	public void init(GameContainer container) throws SlickException{
-		door = new Image("src/res/exit.png");
-		}
+		floorSprite = new Image("src/res/floor.png");
+	}
 	
 	public void render(GameContainer container, Graphics g){
-
-		door.draw((float)this.xCoord, (float)this.yCoord);
+		floorSprite.draw((float)this.xCoord, (float)this.yCoord);			
 	}
 	
 	public void update(){
 		
 	}
-
+	
+	public Floor(int xCoord, int yCoord) throws SlickException{
+		super(xCoord, yCoord);
+		// TODO Auto-generated constructor stub
+	}
 }

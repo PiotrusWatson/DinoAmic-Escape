@@ -20,7 +20,7 @@ public class Metiorite extends GameObject {
 	private int time = 0;
 	
 	public Metiorite(int difficulty) throws SlickException  {
-		super(0, 0, (byte)0);
+		super(0, 0);
 		rate = difficulty + 10;
 		ranArray = new int[rate];
 		for(int i=0;i<rate;i++){

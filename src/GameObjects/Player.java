@@ -21,8 +21,8 @@ public class Player extends GameObject{
 	private SpriteSheet HeadbuttSprite;
 	private Animation HeadbuttAnimation;
 	
-	public Player(int xCoord, int yCoord, byte layer) throws SlickException {
-		super(x, y, layer);
+	public Player(int xCoord, int yCoord) throws SlickException {
+		super(x, y);
 
 		
 		// TODO Auto-generated constructor stub
