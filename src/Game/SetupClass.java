@@ -168,7 +168,7 @@ public class SetupClass extends BasicGameState {
 					endGame.finish(time2);*/
 					score += time;
 					MapGrid.level += 1;
-					Main.updateSize(40);
+					//Main.updateSize(40);
 					sbg.getState(sbg.getCurrentStateID()).init(container, sbg);
 					sbg.enterState(sbg.getCurrentStateID());
 				}
