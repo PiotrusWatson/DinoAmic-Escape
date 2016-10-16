@@ -116,7 +116,9 @@ public class SetupClass extends BasicGameState {
 		grid = map.getGrid();
 		exit = new ExitTile(1, 2);
 		exit.init(container);
+		
 		metiorite = new MeteioriteGround(1, 2);
+		metiorite.init(container);
 		
 		
 	}
@@ -160,7 +162,7 @@ public class SetupClass extends BasicGameState {
 				if(grid[i][j] == 3){
 					metiorite.yCoord = (i+1)*64;
 					metiorite.xCoord = (j+1)*64;
-					block.render(container, g);
+					metiorite.render(container, g);
 				}
 			}
 		}
