@@ -1,3 +1,4 @@
+package Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -6,20 +7,20 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Menu extends BasicGameState{
-
-	Image playNow;
-	Image exitGame;
+	
+	public static int id = 0;
+	Image banner;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-		playNow = new Image("address");
-		exitGame = new Image("address");
+		banner = new Image("src/res/banner.png");
+		
 		
 	}
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g) throws SlickException {
-		g.drawString("DinoAmic Escape!", 200, 400);
+		banner.draw(64, 64);
 		
 	}
 
@@ -32,7 +33,7 @@ public class Menu extends BasicGameState{
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
-		return 0;
+		return id;
 	}
 	
 }
