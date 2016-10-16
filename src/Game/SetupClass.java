@@ -260,7 +260,7 @@ public class SetupClass extends BasicGameState {
 					
 				}
 				
-				if(met.getTime() > 500){
+				if(met.getTime() > 500 && met.isMet == true){
 					met.isMet=false;
 					grid[met.getY()][met.getX()] = 3;
 					if(met.getY() == player.getArrayPosY() -1 && met.getX() == player.getArrayPosX()-1){
