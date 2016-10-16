@@ -26,20 +26,21 @@ public class Menu extends BasicGameState{
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g) throws SlickException {
-		banner.draw(64, 64);
+		//g.setColor(Color.blue);
+		//g.fillRect(0, 0, 1920, 1080);
+		banner.draw(500, 64);
 		//play.draw(64, 3*64);
-		g.setColor(Color.green);
-		g.fillRect(64, 256, 512, 64);
+		g.setColor(Color.green.darker((float)0.3));
+		g.fillRect(500, 256, 512, 256);
 		g.setColor(Color.white);
-		g.drawString("Play", 64, 256);
 		mouseXPos = Mouse.getX();
 		mouseYPos = Mouse.getY();
-		if(mouseXPos>=64 && mouseXPos <=512 && mouseYPos <= 512+64 && mouseYPos >= 512){
-		g.setColor(Color.green.brighter());
-		g.fillRect(64, 256, 512, 64); 
+		if(mouseXPos>=500 && mouseXPos <=1012 && mouseYPos <= 682+256 && mouseYPos >= 682){		g.setColor(Color.green.brighter((float)0.3));
+		g.fillRect(500, 256, 512+200, 256); 
 		g.setColor(Color.white);
-		g.drawString("Play", 64, 256);
 		}
+		g.drawString("Play", 550, 256);
+
 		
 		
 		
