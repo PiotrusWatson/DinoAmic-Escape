@@ -39,7 +39,24 @@ public class endGame {
 		} catch (IOException ex) {
 			System.out.println("Error reading file '" + fileName + "'");
 		}
-
+		
+		// Allows the user to enter their username.
+				//Scanner standardInput = new Scanner(System.in);
+				//System.out.println("Enter your username: ");
+				//String userName = standardInput.nextLine();
+				//standardInput.close();
+				
+				String message = "Game Over. Your Score was " + userScore
+						+ ". Enter your name to store your high score.";
+				String userName = JOptionPane.showInputDialog(null,
+						message,
+						"Getting high score",
+						JOptionPane.QUESTION_MESSAGE);
+		
+		// the username and score are then appended onto the leaderboard
+				String[] appendArray = { userName, userScore };
+				scores.add(appendArray);
+		
 		// This should sort the array in ascending order, by sorting the list
 		// and appending to another list.
 		int iniSize = scores.size();
@@ -71,25 +88,7 @@ public class endGame {
 		for (int i = 0; i < outputLength; i++) {
 			printLeaderboard = sortedScores.get(i)[0] + " " + sortedScores.get(i)[1] + "\n";
 			System.out.println(printLeaderboard);
-		}
-
-		// Allows the user to enter their username.
-		//Scanner standardInput = new Scanner(System.in);
-		//System.out.println("Enter your username: ");
-		//String userName = standardInput.nextLine();
-		//standardInput.close();
 		
-		String message = "Game Over. Your Score was " + userScore
-				+ ". Enter your name to store your high score.";
-		String userName = JOptionPane.showInputDialog(null,
-				message,
-				"Getting high score",
-				JOptionPane.QUESTION_MESSAGE);
-		
-
-		// the username and score are then appended onto the leaderboard
-		String[] appendArray = { userName, userScore };
-		sortedScores.add(appendArray);
 
 		// this try and except writes the list of arrays back to a .txt file.
 		try {
@@ -116,4 +115,5 @@ public class endGame {
 			e.printStackTrace();
 		}
 	}
+}
 }

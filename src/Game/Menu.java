@@ -9,7 +9,13 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.Object;
+//import java.io.*;
 
 public class Menu extends BasicGameState{
 	//Font font;
@@ -23,7 +29,9 @@ public class Menu extends BasicGameState{
 	//TrueTypeFont ttf;
 	int windowWidth = Main.width;
 	int windowHeight = Main.height;
-	
+	String everything = "";
+	//String fileName = "src/res/highScores.txt";
+	//String line = null;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
@@ -32,17 +40,49 @@ public class Menu extends BasicGameState{
 		play2 = new Image("src/res/playbuttonclear.png");
 		dino = new Image ("src/res/DDStationary.png");
 		quit = new Image ("src/res/quitpic.png");
-		//font = new Font("Comic Sans", Font.BOLD, 60);
-		//ttf = new TrueTypeFont(java.awt.Font.SANS_SERIF, true);
+	    String line = "";
+		BufferedReader br;
 		
+		br = null;
+		try {
+			br = new BufferedReader(new FileReader("src/res/highScores.txt"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+		    StringBuilder sb = new StringBuilder();
+			try {
+				line = br.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		    while (line != null) {
+		        sb.append(line);
+		        sb.append(System.lineSeparator());
+		        try {
+					line = br.readLine();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    }
+		    everything = sb.toString();
+		} finally {
+		    try {
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		System.out.println(everything);
 	}
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g) throws SlickException {
-		//g.setFont(font);
-
-		//g.setColor(Color.blue);
-		//g.fillRect(0, 0, 1920, 1080);
 		banner.draw(windowWidth/4, 64);
 		//play.draw(64, 3*64);
 		g.setColor(Color.green.darker((float)0.3));
@@ -69,7 +109,8 @@ public class Menu extends BasicGameState{
 		play2.draw(windowWidth/4, windowHeight/3);
 		quit.draw(windowWidth/4, (windowHeight/2)+64);
 		dino.draw(windowWidth/2, 64);
-		//g.drawString("Play", windowWidth/4, windowHeight/3);
+		
+		g.drawString(everything, windowWidth-512, windowHeight/4);
 	}
 
 	@Override
