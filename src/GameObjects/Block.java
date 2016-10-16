@@ -14,6 +14,7 @@ public class Block extends GameObject{
 	private Animation explode;
 	private Image blockStatic;
 	public int health;
+	public static int maxHealth;
 	final public static int ID = 2;
 	//public Image floor;
 	
@@ -27,6 +28,8 @@ public class Block extends GameObject{
 		blockSprite = new SpriteSheet("src/res/hardRockAnimationSSheet.png", SCALE, SCALE);
 		explode = new Animation(blockSprite, 100);
 		blockStatic = explode.getImage(0);
+		maxHealth = 50;
+		health = maxHealth;
 		//floor = new Image("src/res/floor.png");
 		}
 	
@@ -40,6 +43,18 @@ public class Block extends GameObject{
 	
 	public void update(){
 		
+	}
+	
+	public void takeDamage(int damage){
+		health -= damage;
+	}
+	
+	public void destroyBlock(){
+		explode.draw(this.xCoord, this.yCoord);
+		if (explode.getFrame() == explode.getFrameCount() - 1)
+		{
+			
+		}
 	}
 
 }
