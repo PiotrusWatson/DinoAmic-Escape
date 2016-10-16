@@ -3,6 +3,8 @@ package GameObjects;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
+import Game.SetupClass;
+
 
 public class GameObject {
 	//A base by which all objects in the game can use and modify
@@ -61,11 +63,17 @@ public class GameObject {
 		return (this.yCoord / SCALE);
 	}
 	
+	public void updateGrid(int item, int x, int y)
+	{
+	
+	}
 	public GameObject(int xCoord, int yCoord)
 	{
 		this.xCoord = xCoord;
 		this.yCoord = yCoord;
 		//this.layer = layer;
 	}
+	
+	
 
 }
