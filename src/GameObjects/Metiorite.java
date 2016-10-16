@@ -11,7 +11,7 @@ import org.newdawn.slick.Image;
 import levelGen.MapGrid;
 public class Metiorite extends GameObject {
 	private Image shadow;
-	private Image met;
+
 	private int rate;
 	private int[] ranArray;
 	public boolean isMet;
