@@ -119,6 +119,21 @@ public class Player extends GameObject{
 		
 	}
 	
+	public void tennisHit(int[][] grid, Block block){
+		if (this.facing == 0){
+			if (!isAllowedUp(grid, block)){
+				int j = this.getArrayPosX();
+				int i = this.getArrayPosY();
+				grid[i-2][j-1] = 1;
+
+			}
+		}
+
+
+
+		
+	}
+	
 	public boolean isAllowedLeft(int[][] grid, Block block){
 		boolean allowed = true;
 		for (int i = 0; i < grid.length; i++){
