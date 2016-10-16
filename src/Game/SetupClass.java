@@ -16,6 +16,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.Sound;
+import org.newdawn.slick.Music;
 
 //import com.sun.javafx.geom.Rectangle;
 
@@ -51,6 +53,15 @@ public class SetupClass extends BasicGameState {
 	public static int fps = 1000;
 	public boolean reduced = false;
 	public ExitTile exit;
+	
+
+	public Sound grunt;
+	public Sound levelEnd;
+	public Sound rockBreak;
+	public Sound gameOver;
+	public Sound pain;
+	public Sound meteorHit;
+	public Music run;
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
@@ -118,6 +129,15 @@ public class SetupClass extends BasicGameState {
 		exit = new ExitTile(1, 2);
 		exit.init(container);
 		
+		grunt = new Sound("src/res/grunt.ogg");
+		levelEnd = new Sound("src/res/levelEnd.ogg");
+		rockBreak = new Sound("src/res/meteorstrike.ogg");
+		gameOver = new Sound("src/res/gameover.ogg");
+		pain = new Sound("src/res/pain.ogg");
+		meteorHit = new Sound("src/res/rockbreak.ogg");
+		
+		run = new Music("src/res/Run!.ogg");
+
 		metiorite = new MeteioriteGround(1, 2);
 		metiorite.init(container);
 	
@@ -127,7 +147,7 @@ public class SetupClass extends BasicGameState {
 
 	@Override
 	public void render(GameContainer container, StateBasedGame sbg, Graphics g) throws SlickException {
-
+		
 		if (two_player){
 		player2.render(container, g);}
 		timer.render(g, Main.windowWidth); //window width needed for timer bar
@@ -176,12 +196,15 @@ public class SetupClass extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException {
 		// win state
+				if (!run.playing())
+					run.loop();
 				if (player.xCoord == exit.xCoord && player.yCoord == exit.yCoord){
 					int time = timer.getTime();
 					/*String time2 = String(time);
 					endGame.finish(time2);*/
 					score += time;
 					MapGrid.level += 1;
+					levelEnd.play();
 					//Main.updateSize(40);
 					sbg.getState(sbg.getCurrentStateID()).init(container, sbg);
 					sbg.enterState(sbg.getCurrentStateID());
@@ -189,8 +212,10 @@ public class SetupClass extends BasicGameState {
 				
 				
 				if(timer.getTime()<= 0){ //loss state
+					gameOver.play();
 					String userScore = Integer.toString(score);
 					endGame.finish(userScore);
+					score = 0;
 					sbg.getState(0).init(container, sbg);
 					sbg.enterState(0);
 				}
@@ -224,6 +249,8 @@ public class SetupClass extends BasicGameState {
 					boolean valid =player.headButt(grid, block);
 					if(valid){
 						timer.reduce(2000);
+						grunt.play();
+						rockBreak.play();
 						player.headbutting = true;
 					}
 				}
@@ -234,12 +261,13 @@ public class SetupClass extends BasicGameState {
 					
 				}
 				
-				if(met.getTime() > 500){
+				if(met.getTime() > 500 && met.isMet == true){
 					met.isMet=false;
 					grid[met.getY()][met.getX()] = 3;
 					if(met.getY() == player.getArrayPosY() -1 && met.getX() == player.getArrayPosX()-1){
 						if(reduced == false){
-							timer.reduce(10000);	
+							timer.reduce(10000);
+							pain.play();
 							reduced = true;
 						}
 						

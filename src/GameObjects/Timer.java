@@ -29,7 +29,7 @@ public class Timer extends GameObject {
 		g.setColor(Color.green);
 		g.fillRect(64, 2, time/35, 64);
 		g.setColor(Color.white);
-		g.drawString(Integer.toString(time),500,20);}
+		g.drawString(Integer.toString(time/1000),500,20);}
 	}
 	public void reduce(int value){
 		time -= value;

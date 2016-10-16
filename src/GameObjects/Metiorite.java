@@ -4,13 +4,14 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.Image;
 
 import levelGen.MapGrid;
 public class Metiorite extends GameObject {
 	private Image shadow;
-	private Image met;
+
 	private int rate;
 	private int[] ranArray;
 	public boolean isMet;
@@ -19,6 +20,8 @@ public class Metiorite extends GameObject {
 	private int xIndex;
 	private int yIndex;
 	private int time = 0;
+	
+	public Sound meteorFall;
 	
 	public Metiorite(int difficulty) throws SlickException  {
 		super(0, 0);
@@ -31,7 +34,7 @@ public class Metiorite extends GameObject {
 	}
 	
 	public void init(GameContainer container) throws SlickException{
-		
+		meteorFall = new Sound("src/res/meteorfall.ogg");
 	}
 	
 	public void update(int alpha){

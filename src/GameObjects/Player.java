@@ -123,7 +123,8 @@ public class Player extends GameObject{
 			if (!isAllowedUp(grid, block)){
 				int j = this.getArrayPosX();
 				int i = this.getArrayPosY();
-				grid[i-2][j-1] = 1;
+				grid[i-2][j-1] =
+						1;
 
 			}
 		}
