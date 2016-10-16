@@ -50,7 +50,7 @@ public class Main extends StateBasedGame{
 		AppGameContainer app;
 		sg = new ScalableGame((Game) new Main("Default Title"), width, height);
 		app = new AppGameContainer(sg);
-		app.setDisplayMode(windowWidth, windowHeight, true);//true for fullscreend
+		app.setDisplayMode(windowWidth, windowHeight, true);//true 
 		app.setAlwaysRender(true);
 		app.start();
 	}

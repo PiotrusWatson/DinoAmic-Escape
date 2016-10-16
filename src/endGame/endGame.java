@@ -91,15 +91,16 @@ public class endGame {
 			for (int k = 0; k < sortedScores.size(); k++) {
 				String outputString = sortedScores.get(k)[0] + "," + sortedScores.get(k)[1];
 				bw.write(outputString);
+				
 				if(k != sortedScores.size() - 1){
 					bw.newLine();
 				}
+			}
 				
 				
-			System.out.println("Thank you for ");
+			System.out.println("Thank you for Playing");
 			bw.flush();
 			bw.close();
-		}
 		}
 		
 			catch (IOException e) {
