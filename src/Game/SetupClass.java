@@ -53,15 +53,6 @@ public class SetupClass extends BasicGameState {
 	 * windowHeight = height of the window
 	 * fullScreen if true makes game fullScreen
 	 */
-
-	private static int windowWidth = 1000;
-	private static int windowHeight = 700;
-	
-	private static int width = 1000; //determines actual width of game
-	private static int height = 700 ; //ditto with actual height of game
-	
-	public static final int MAXWIDTH = 2000;
-	public static final int MAXHEIGHT = 1400;
 	
 	private static boolean fullScreen = false;
 	
@@ -69,25 +60,6 @@ public class SetupClass extends BasicGameState {
 	private Timer timer;
 	public static int score = 0;
 	private static boolean two_player = false; // set to true for two players
-
-	
-	public static void setWidth(int w){
-		width = w;
-	}
-	
-	public static void setHeight(int h){
-		height = h;
-	}
-	
-	
-	public static void updateSize(int updater)
-	{
-		if (width < MAXWIDTH && height < MAXHEIGHT){
-			width += updater;
-			height += updater;
-		}
-	}
-	
 	
 
 	
@@ -137,7 +109,7 @@ public class SetupClass extends BasicGameState {
 		block.init(container);
 		floor = new Floor(1, 2);
 		floor.init(container);
-		map=new MapGrid(((width/64)-1),((height/64)-1));
+		map=new MapGrid(((Main.width/64)-1),((Main.height/64)-1));
 		map.generateGrid(2);
 		grid = map.getGrid();
 		exit = new ExitTile(1, 2);
@@ -150,7 +122,7 @@ public class SetupClass extends BasicGameState {
 
 		if (two_player){
 		player2.render(container, g);}
-		timer.render(g, windowWidth); //window width needed for timer bar
+		timer.render(g, Main.windowWidth); //window width needed for timer bar
 		block.render(container, g);
 		
 		
@@ -196,14 +168,12 @@ public class SetupClass extends BasicGameState {
 					endGame.finish(time2);*/
 					score += time;
 					MapGrid.level += 1;
-					updateSize(40);
-					
-					
+					Main.updateSize(40);
 					
 				}
 				
 				
-				if(timer.getTime()<= 0){
+				if(timer.getTime()<= 0){ //loss state
 					System.exit(0);
 				}
 
