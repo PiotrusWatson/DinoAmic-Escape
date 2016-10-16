@@ -14,7 +14,7 @@ public class Metiorite extends GameObject {
 	private Image met;
 	private int rate;
 	private int[] ranArray;
-	private boolean isMet;
+	public boolean isMet;
 	private int x;
 	private int y;
 	private int xIndex;
@@ -49,12 +49,12 @@ public class Metiorite extends GameObject {
 		shadow = new Image("src/res/shadow.png");
 
 		
-		int random = (int)(Math.random()*1000);		
-			if(time<1000){
+		int random = (int)(Math.random()*100);		
+			if(time<500 && isMet == true){
 				shadow.draw(x,y);
 			} 
 
-		if(random == 0){
+		if(random == 0 && isMet == false){
 			int random2 = (int)(Math.random() *3);
 			if(random2 ==0){
 				xIndex = playerX-1;
@@ -66,7 +66,7 @@ public class Metiorite extends GameObject {
 			
 			x = 64 + (xIndex*64);
 			y = 64 + (yIndex*64);
-			
+			isMet = true;
 			time = 0;
 		}
 

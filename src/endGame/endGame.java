@@ -1,7 +1,8 @@
 package endGame;
 
 import java.io.*;
-import java.util.*;
+import java.util.*; 
+import javax.swing.JOptionPane;
 
 public class endGame {
 
@@ -9,8 +10,8 @@ public class endGame {
 
 		// Initialising variables and files
 		String userScore = score;
-		//String userScore = "2800";
-
+		System.out.println(userScore+"score");
+		
 		List<String[]> scores = new ArrayList<String[]>();
 		List<String[]> sortedScores = new ArrayList<String[]>();
 
@@ -73,10 +74,18 @@ public class endGame {
 		}
 
 		// Allows the user to enter their username.
-		Scanner standardInput = new Scanner(System.in);
-		System.out.println("Enter your username: ");
-		String userName = standardInput.nextLine();
-		standardInput.close();
+		//Scanner standardInput = new Scanner(System.in);
+		//System.out.println("Enter your username: ");
+		//String userName = standardInput.nextLine();
+		//standardInput.close();
+		
+		String message = "Game Over. Your Score was " + userScore
+				+ ". Enter your name to store your high score.";
+		String userName = JOptionPane.showInputDialog(null,
+				message,
+				"Getting high score",
+				JOptionPane.QUESTION_MESSAGE);
+		
 
 		// the username and score are then appended onto the leaderboard
 		String[] appendArray = { userName, userScore };
@@ -91,15 +100,20 @@ public class endGame {
 			for (int k = 0; k < sortedScores.size(); k++) {
 				String outputString = sortedScores.get(k)[0] + "," + sortedScores.get(k)[1];
 				bw.write(outputString);
-				bw.newLine();
+				
+				if(k != sortedScores.size() - 1){
+					bw.newLine();
+				}
 			}
-
-			System.out.println("Done");
+				
+				
+			System.out.println("Thank you for Playing");
 			bw.flush();
 			bw.close();
-		} catch (IOException e) {
+		}
+		
+			catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
-	}
+}

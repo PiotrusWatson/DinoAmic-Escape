@@ -45,6 +45,7 @@ public class SetupClass extends BasicGameState {
 	public Floor floor;
 	public Metiorite met;
 	public MeteioriteGround metiorite;
+
 	
 	
 	public MapGrid map;
@@ -139,6 +140,7 @@ public class SetupClass extends BasicGameState {
 
 		metiorite = new MeteioriteGround(1, 2);
 		metiorite.init(container);
+	
 		
 		
 	}
@@ -211,9 +213,10 @@ public class SetupClass extends BasicGameState {
 				
 				if(timer.getTime()<= 0){ //loss state
 					gameOver.play();
-					if (!gameOver.playing()){
-					sbg.getState(2).init(container, sbg);
-					sbg.enterState(2);}
+					String userScore = Integer.toString(score);
+					endGame.finish(userScore);
+					sbg.getState(0).init(container, sbg);
+					sbg.enterState(0);
 				}
 
 				Input input = container.getInput();
@@ -257,7 +260,8 @@ public class SetupClass extends BasicGameState {
 					
 				}
 				
-				if(met.getTime() > 1000){
+				if(met.getTime() > 500){
+					met.isMet=false;
 					grid[met.getY()][met.getX()] = 3;
 					if(met.getY() == player.getArrayPosY() -1 && met.getX() == player.getArrayPosX()-1){
 						if(reduced == false){

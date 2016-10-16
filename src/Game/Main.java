@@ -48,8 +48,8 @@ public class Main extends StateBasedGame{
 		AppGameContainer app;
 		sg = new ScalableGame((Game) new Main("Default Title"), width, height);
 		app = new AppGameContainer(sg);
-		app.setDisplayMode(windowWidth, windowHeight, true);
-		app.setAlwaysRender(true); 
+		app.setDisplayMode(windowWidth, windowHeight, false);//true 
+		app.setAlwaysRender(true);
 		app.start();
 
 	}
