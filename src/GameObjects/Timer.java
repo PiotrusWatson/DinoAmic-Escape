@@ -11,7 +11,7 @@ public class Timer extends GameObject {
 
 	int time;
 	public Timer(){
-		super(0,0,(byte)0);
+		super(0,0);
 		time = 30000;
 	}
 	
