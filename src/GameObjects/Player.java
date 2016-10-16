@@ -41,7 +41,7 @@ public class Player extends GameObject{
 		WalkSprite = new SpriteSheet("src/res/DINODEANWeaponPNG.png", SCALE, SCALE);
 		WalkAnimation = new Animation(WalkSprite, 100);
 		HeadbuttSprite = new SpriteSheet("src/res/DDGlasgow123.png", 64, 64);
-		HeadbuttAnimation = new Animation(HeadbuttSprite, 100); //change from 100 if cycles too fast
+		HeadbuttAnimation = new Animation(HeadbuttSprite, 50); //change from 100 if cycles too fast
 		
 	}
 	public void update(){
