@@ -57,7 +57,6 @@ public class SetupClass extends BasicGameState {
 	public Sound levelEnd;
 	public Sound rockBreak;
 	public Sound gameOver;
-	public Sound meteorFall;
 	public Sound pain;
 	/*
 	 * windowWidth = width of the window
@@ -130,7 +129,6 @@ public class SetupClass extends BasicGameState {
 		grunt = new Sound("src/res/grunt.ogg");
 		levelEnd = new Sound("src/res/levelEnd.ogg");
 		rockBreak = new Sound("src/res/meteorstrike.ogg");
-		meteorFall = new Sound("src/res/meteorfall.ogg");
 		gameOver = new Sound("src/res/gameover.ogg");
 		pain = new Sound("src/res/pain.ogg");
 
@@ -179,6 +177,9 @@ public class SetupClass extends BasicGameState {
 				if(grid[i][j] == 3){
 					metiorite.yCoord = (i+1)*64;
 					metiorite.xCoord = (j+1)*64;
+					
+					if (!meteorHit.playing())
+						meteorHit.play();
 					metiorite.render(container, g);
 				}
 			}
@@ -197,6 +198,7 @@ public class SetupClass extends BasicGameState {
 					endGame.finish(time2);*/
 					score += time;
 					MapGrid.level += 1;
+					levelEnd.play();
 					//Main.updateSize(40);
 					sbg.getState(sbg.getCurrentStateID()).init(container, sbg);
 					sbg.enterState(sbg.getCurrentStateID());
@@ -204,8 +206,10 @@ public class SetupClass extends BasicGameState {
 				
 				
 				if(timer.getTime()<= 0){ //loss state
+					gameOver.play();
+					if (!gameOver.playing()){
 					sbg.getState(2).init(container, sbg);
-					sbg.enterState(2);
+					sbg.enterState(2);}
 				}
 
 				Input input = container.getInput();
@@ -238,6 +242,7 @@ public class SetupClass extends BasicGameState {
 					if(valid){
 						timer.reduce(2000);
 						grunt.play();
+						rockBreak.play();
 						player.headbutting = true;
 					}
 				}
