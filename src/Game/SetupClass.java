@@ -14,6 +14,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.ScalableGame;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 //import com.sun.javafx.geom.Rectangle;
@@ -31,7 +32,9 @@ import GameObjects.Floor;
 
 
 
-public class SetupClass extends BasicGame {
+public class SetupClass extends BasicGameState {
+	
+	public static int id = 1;
 	public Player player;
 	public Player player2;
 	
@@ -86,10 +89,7 @@ public class SetupClass extends BasicGame {
 	}
 	
 	
-	public SetupClass(String title) {
-		super(title);
-		
-	}
+
 	
 	public boolean occupiedSlot(int coordX, int coordY)
 	{
@@ -98,9 +98,34 @@ public class SetupClass extends BasicGame {
 		else
 			return false;
 	}
-	@Override
-	public void init(GameContainer container) throws SlickException {
+	
 
+	private String String(int time) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
+
+	
+	public static void main(String[] args) throws SlickException {
+		//AppGameContainer app = new AppGameContainer((Game) new ScalableGame(new SetupClass("Setup Test"), width, height));
+		//app.setDisplayMode(windowWidth, windowHeight, fullScreen);
+		//app.start();
+		
+	}
+
+	
+
+	@Override
+	public int getID() {
+		// TODO Auto-generated method stub
+		return id;
+	}
+
+	@Override
+	public void init(GameContainer container, StateBasedGame arg1) throws SlickException {
 		player = new Player(1, 2);
 		player2 = new Player(5, 6);
 		player.init(container);
@@ -118,92 +143,10 @@ public class SetupClass extends BasicGame {
 		exit = new ExitTile(1, 2);
 		exit.init(container);
 		
-		
 	}
-	
+
 	@Override
-	public void update(GameContainer container, int delta) throws SlickException {
-		// win state
-		if (player.xCoord == exit.xCoord && player.yCoord == exit.yCoord){
-			int time = timer.getTime();
-			/*String time2 = String(time);
-			endGame.finish(time2);*/
-			score += time;
-			MapGrid.level += 1;
-			updateSize(40);
-			
-			
-			
-		}
-		
-		
-		if(timer.getTime()<= 0){
-			System.exit(0);
-		}
-
-		Input input = container.getInput();
-		if (input.isKeyPressed(Input.KEY_S)){
-			player.moveDown(grid, block);
-			player.headbutting = false;
-
-		}
-		else if (input.isKeyPressed(Input.KEY_A)){
-			player.moveLeft(grid,block);
-			player.headbutting = false;
-
-			
-		}
-		else if (input.isKeyPressed(Input.KEY_D)){
-			
-			player.moveRight(grid, block);
-			player.headbutting = false;
-
-			
-		}
-		else if (input.isKeyPressed(Input.KEY_W)){
-			player.moveUp(grid, block);
-			player.headbutting = false;
-			
-		}
-
-		else if (input.isKeyPressed(Input.KEY_SPACE)){
-			boolean valid =player.headButt(grid, block);
-			if(valid){
-				timer.reduce(2000);
-				player.headbutting = true;
-			}
-		}
-		
-		timer.update(delta);
-		
-		if(timer.getTime() == 0 || timer.getTime() < 0){
-			
-		}
-		
-		if(met.getTime() > 1000){
-			grid[met.getY()][met.getX()] = 1;
-			if(met.getY() == player.getArrayPosY() -1 && met.getX() == player.getArrayPosX()-1){
-				if(reduced == false){
-					timer.reduce(10000);	
-					reduced = true;
-				}
-				
-			}
-		}
-		if(met.getTime()<1000){
-			reduced = false;
-		}
-
-		met.update(delta);
-
-	}
-
-	private String String(int time) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public void render(GameContainer container, Graphics g) throws SlickException {
-
+	public void render(GameContainer container, StateBasedGame arg1, Graphics g) throws SlickException {
 
 		if (two_player){
 		player2.render(container, g);}
@@ -241,13 +184,85 @@ public class SetupClass extends BasicGame {
 		}
 		player.render(container, g);
 		met.render(container,g,grid[0].length,grid.length,player.getArrayPosX(),player.getArrayPosY());
-
-
-	}
-	public static void main(String[] args) throws SlickException {
-		AppGameContainer app = new AppGameContainer((Game) new ScalableGame(new SetupClass("Setup Test"), width, height));
-		app.setDisplayMode(windowWidth, windowHeight, fullScreen);
-		app.start();
 		
 	}
-}
+
+	@Override
+	public void update(GameContainer container, StateBasedGame arg1, int delta) throws SlickException {
+		// win state
+				if (player.xCoord == exit.xCoord && player.yCoord == exit.yCoord){
+					int time = timer.getTime();
+					/*String time2 = String(time);
+					endGame.finish(time2);*/
+					score += time;
+					MapGrid.level += 1;
+					updateSize(40);
+					
+					
+					
+				}
+				
+				
+				if(timer.getTime()<= 0){
+					System.exit(0);
+				}
+
+				Input input = container.getInput();
+				if (input.isKeyPressed(Input.KEY_S)){
+					player.moveDown(grid, block);
+					player.headbutting = false;
+
+				}
+				else if (input.isKeyPressed(Input.KEY_A)){
+					player.moveLeft(grid,block);
+					player.headbutting = false;
+
+					
+				}
+				else if (input.isKeyPressed(Input.KEY_D)){
+					
+					player.moveRight(grid, block);
+					player.headbutting = false;
+
+					
+				}
+				else if (input.isKeyPressed(Input.KEY_W)){
+					player.moveUp(grid, block);
+					player.headbutting = false;
+					
+				}
+
+				else if (input.isKeyPressed(Input.KEY_SPACE)){
+					boolean valid =player.headButt(grid, block);
+					if(valid){
+						timer.reduce(2000);
+						player.headbutting = true;
+					}
+				}
+				
+				timer.update(delta);
+				
+				if(timer.getTime() == 0 || timer.getTime() < 0){
+					
+				}
+				
+				if(met.getTime() > 1000){
+					grid[met.getY()][met.getX()] = 1;
+					if(met.getY() == player.getArrayPosY() -1 && met.getX() == player.getArrayPosX()-1){
+						if(reduced == false){
+							timer.reduce(10000);	
+							reduced = true;
+						}
+						
+					}
+				}
+				if(met.getTime()<1000){
+					reduced = false;
+				}
+
+				met.update(delta);
+
+			}
+
+		
+	}
