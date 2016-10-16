@@ -44,7 +44,7 @@ public class Player extends GameObject{
 		
 	}
 	public void update(){
-		HeadbuttAnimation.setLooping(headbutting);
+		
 	}
 	
 	public void moveLeft(int[][]grid, Block block){
@@ -202,7 +202,6 @@ public class Player extends GameObject{
 		else{
 			HeadbuttAnimation.getCurrentFrame().setRotation(facing);
 			HeadbuttAnimation.draw(this.xCoord, this.yCoord);
-			
 			
 			
 		}

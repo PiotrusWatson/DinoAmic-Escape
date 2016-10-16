@@ -50,10 +50,8 @@ public class Metiorite extends GameObject {
 		if(isMet){
 			if(time<1000){
 				shadow.draw(x,y);
-			} else if(time < 2000){
-				met.draw(x,y);
 			} else {
-				isMet = false;
+				met.draw(x,y);
 			}
 
 		} else if(random == 0){

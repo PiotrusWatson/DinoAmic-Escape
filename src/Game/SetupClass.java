@@ -103,7 +103,7 @@ public class SetupClass extends BasicGameState {
 		player.init(container);
 		player2.init(container);
 		timer = new Timer();
-		met = new Metiorite(0);
+		met = new Metiorite(MapGrid.level);
 		
 		block = new Block(1, 2);
 		block.init(container);
@@ -219,7 +219,7 @@ public class SetupClass extends BasicGameState {
 				}
 				
 				if(met.getTime() > 1000){
-					grid[met.getY()][met.getX()] = 1;
+					grid[met.getY()][met.getX()] = 3;
 					if(met.getY() == player.getArrayPosY() -1 && met.getX() == player.getArrayPosX()-1){
 						if(reduced == false){
 							timer.reduce(10000);	
