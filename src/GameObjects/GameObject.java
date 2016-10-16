@@ -3,13 +3,15 @@ package GameObjects;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Shape;
 
+import Game.SetupClass;
+
 
 public class GameObject {
 	//A base by which all objects in the game can use and modify
 	
 	public int xCoord;
 	public int yCoord;
-	public byte layer;
+	//public byte layer;
 	public static final int SCALE = 64;
 	private Rectangle boundingBox = new Rectangle(xCoord, yCoord, xCoord + SCALE, yCoord + SCALE);
 	
@@ -36,9 +38,9 @@ public class GameObject {
 		return yCoord;
 	}
 	
-	public byte getLayer(){
+	/*public byte getLayer(){
 		return layer;
-	}
+	}*/
 	
 	public void setXCoord(int xCoord){
 		this.xCoord = xCoord;
@@ -48,15 +50,30 @@ public class GameObject {
 		this.yCoord = yCoord;
 	}
 	
-	public void setLayer(byte layer){
+	/*public void setLayer(byte layer){
 		this.layer = layer;
+	}*/
+	
+	public int getArrayPosX(){
+		return ((this.xCoord / SCALE) );
 	}
 	
-	public GameObject(int xCoord, int yCoord, byte layer)
+	
+	public int getArrayPosY(){
+		return (this.yCoord / SCALE);
+	}
+	
+	public void updateGrid(int item, int x, int y)
+	{
+	
+	}
+	public GameObject(int xCoord, int yCoord)
 	{
 		this.xCoord = xCoord;
 		this.yCoord = yCoord;
-		this.layer = layer;
+		//this.layer = layer;
 	}
+	
+	
 
 }
