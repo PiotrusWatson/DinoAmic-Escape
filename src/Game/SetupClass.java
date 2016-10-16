@@ -43,6 +43,7 @@ public class SetupClass extends BasicGameState {
 	public Floor floor;
 	public Metiorite met;
 	public MeteioriteGround metiorite;
+
 	
 	
 	public MapGrid map;
@@ -119,6 +120,7 @@ public class SetupClass extends BasicGameState {
 		
 		metiorite = new MeteioriteGround(1, 2);
 		metiorite.init(container);
+	
 		
 		
 	}
