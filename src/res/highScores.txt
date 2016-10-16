@@ -1,5 +1,3 @@
 Jack Jarvis,17759
-Jim#,4958
-Harry,4000
-k,0
-Andrew,100351
+bob,14637
+hi,28149
