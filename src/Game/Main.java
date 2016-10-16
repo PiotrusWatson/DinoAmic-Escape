@@ -15,11 +15,11 @@ public class Main extends StateBasedGame{
 		
 	}
 	
-	public static int windowWidth = 1000;
-	public static int windowHeight = 700;
+	public static int windowWidth = 1920;
+	public static int windowHeight = 1080;
 	
-	public static int width = 1000; //determines actual width of game
-	public static int height = 700; //ditto with actual height of game
+	public static int width = 2000; //determines actual width of game
+	public static int height = 1400; //ditto with actual height of game
 	
 	public static final int MAXWIDTH = 2000;
 	public static final int MAXHEIGHT = 1400;
@@ -38,8 +38,8 @@ public class Main extends StateBasedGame{
 	public static void updateSize(int updater) throws SlickException
 	{
 		if (width <= MAXWIDTH && height <= MAXHEIGHT){
-			width = 2000;
-			height = 1400;
+			width += updater;
+			height +=updater;
 			sg.recalculateScale();
 		}
 	}

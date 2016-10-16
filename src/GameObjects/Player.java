@@ -14,8 +14,7 @@ public class Player extends GameObject{
 	private int facing = 90;
 	private static int moveSpeed = 64;
 	public boolean headbutting = false; // used to decide weather to use headbutt animation or not
-	
-	
+
 	private SpriteSheet WalkSprite;
 	private Animation WalkAnimation;
 	private SpriteSheet HeadbuttSprite;
@@ -41,11 +40,11 @@ public class Player extends GameObject{
 		WalkSprite = new SpriteSheet("src/res/DINODEANWeaponPNG.png", SCALE, SCALE);
 		WalkAnimation = new Animation(WalkSprite, 100);
 		HeadbuttSprite = new SpriteSheet("src/res/DDGlasgow123.png", 64, 64);
-		HeadbuttAnimation = new Animation(HeadbuttSprite, 100); //change from 100 if cycles too fast
+		HeadbuttAnimation = new Animation(HeadbuttSprite, 50); //change from 100 if cycles too fast
 		
 	}
 	public void update(){
-		
+		HeadbuttAnimation.setLooping(headbutting);
 	}
 	
 	public void moveLeft(int[][]grid, Block block){
@@ -125,7 +124,7 @@ public class Player extends GameObject{
 			for (int j = 0; j<grid[0].length; j++){
 				block.yCoord = (i+1)*64;
 				block.xCoord = (j+1)*64;
-				if (grid[i][j] == 2){
+				if (grid[i][j] >= 2){
 					if ((this.xCoord -64 == block.xCoord)&& (this.yCoord  == block.yCoord)){
 						allowed = false;
 					}
@@ -140,7 +139,7 @@ public class Player extends GameObject{
 			for (int j = 0; j<grid[0].length; j++){
 				block.yCoord = (i)*64;
 				block.xCoord = (j)*64;
-				if (grid[i][j] == 2){
+				if (grid[i][j] >= 2){
 					if ((this.xCoord  == block.xCoord)&& (this.yCoord -64 == block.yCoord)){
 						allowed = false;
 					}
@@ -156,7 +155,7 @@ public class Player extends GameObject{
 			for (int j = 0; j<grid[0].length; j++){
 				block.yCoord = (i+1)*64;
 				block.xCoord = (j+1)*64;
-				if (grid[i][j] == 2){
+				if (grid[i][j] >= 2){
 					if ((this.xCoord  == block.xCoord)&& (this.yCoord -64 == block.yCoord)){
 						allowed = false;
 					}
@@ -172,7 +171,7 @@ public class Player extends GameObject{
 			for (int j = 0; j<grid[0].length; j++){
 				block.yCoord = (i+1)*64;
 				block.xCoord = (j+1)*64;
-				if (grid[i][j] == 2){
+				if (grid[i][j] >= 2){
 					if ((this.xCoord   == block.xCoord)&& (this.yCoord +64 == block.yCoord)){
 						allowed = false;
 					}
@@ -188,6 +187,9 @@ public class Player extends GameObject{
 		else{
 			HeadbuttAnimation.getCurrentFrame().setRotation(facing);
 			HeadbuttAnimation.draw(this.xCoord, this.yCoord);
+			
+			
+			
 		}
 		// TODO Auto-generated method stub
 		
