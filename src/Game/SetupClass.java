@@ -22,6 +22,7 @@ import org.newdawn.slick.Sound;
 
 import GameObjects.Player;
 import GameObjects.GameObject;
+import GameObjects.MeteioriteGround;
 import GameObjects.Metiorite;
 import GameObjects.Timer;
 import endGame.endGame;
@@ -42,6 +43,7 @@ public class SetupClass extends BasicGameState {
 	public Block block;
 	public Floor floor;
 	public Metiorite met;
+	public MeteioriteGround metiorite;
 	
 	
 	public MapGrid map;
@@ -52,8 +54,11 @@ public class SetupClass extends BasicGameState {
 	
 	public Sound meteorHit;
 	public Sound grunt;
-	public Sound levelEnd = new Sound("src/res/levelEnd.ogg");
-	public Sound rockBreak = new Sound("src/res/meteorstrke.ogg");
+	public Sound levelEnd;
+	public Sound rockBreak;
+	public Sound gameOver;
+	public Sound meteorFall;
+	public Sound pain;
 	/*
 	 * windowWidth = width of the window
 	 * windowHeight = height of the window
@@ -123,8 +128,15 @@ public class SetupClass extends BasicGameState {
 		
 		meteorHit = new Sound("src/res/rockbreak.ogg");
 		grunt = new Sound("src/res/grunt.ogg");
-		
+		levelEnd = new Sound("src/res/levelEnd.ogg");
+		rockBreak = new Sound("src/res/meteorstrike.ogg");
+		meteorFall = new Sound("src/res/meteorfall.ogg");
+		gameOver = new Sound("src/res/gameover.ogg");
+		pain = new Sound("src/res/pain.ogg");
 
+		metiorite = new MeteioriteGround(1, 2);
+		metiorite.init(container);
+		
 		
 	}
 
@@ -163,6 +175,12 @@ public class SetupClass extends BasicGameState {
 					exit.xCoord = (j+1)*64;
 					exit.render(container, g);
 				}
+				
+				if(grid[i][j] == 3){
+					metiorite.yCoord = (i+1)*64;
+					metiorite.xCoord = (j+1)*64;
+					metiorite.render(container, g);
+				}
 			}
 		}
 		player.render(container, g);
@@ -186,7 +204,8 @@ public class SetupClass extends BasicGameState {
 				
 				
 				if(timer.getTime()<= 0){ //loss state
-					System.exit(0);
+					sbg.getState(2).init(container, sbg);
+					sbg.enterState(2);
 				}
 
 				Input input = container.getInput();
@@ -218,6 +237,7 @@ public class SetupClass extends BasicGameState {
 					boolean valid =player.headButt(grid, block);
 					if(valid){
 						timer.reduce(2000);
+						grunt.play();
 						player.headbutting = true;
 					}
 				}
@@ -232,7 +252,8 @@ public class SetupClass extends BasicGameState {
 					grid[met.getY()][met.getX()] = 3;
 					if(met.getY() == player.getArrayPosY() -1 && met.getX() == player.getArrayPosX()-1){
 						if(reduced == false){
-							timer.reduce(10000);	
+							timer.reduce(10000);
+							pain.play();
 							reduced = true;
 						}
 						
