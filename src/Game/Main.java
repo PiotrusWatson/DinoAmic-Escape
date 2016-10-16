@@ -6,6 +6,8 @@ import org.newdawn.slick.ScalableGame;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import endGame.GameOver;
+
 public class Main extends StateBasedGame{
 	
 	
@@ -51,14 +53,14 @@ public class Main extends StateBasedGame{
 		app.setDisplayMode(windowWidth, windowHeight, true);
 		app.setAlwaysRender(true); 
 		app.start();
-
 	}
 	
 
 	@Override
-	public void initStatesList(GameContainer arg0) throws SlickException {
+	public void initStatesList(GameContainer container) throws SlickException {
 		addState(new Menu());
 		addState(new SetupClass());
+		//saddState(new GameOver());
 		
 	}
 
