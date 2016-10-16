@@ -9,8 +9,8 @@ public class endGame {
 
 		// Initialising variables and files
 		String userScore = score;
-		//String userScore = "2800";
-
+		System.out.println(userScore+"score");
+		
 		List<String[]> scores = new ArrayList<String[]>();
 		List<String[]> sortedScores = new ArrayList<String[]>();
 
@@ -91,15 +91,20 @@ public class endGame {
 			for (int k = 0; k < sortedScores.size(); k++) {
 				String outputString = sortedScores.get(k)[0] + "," + sortedScores.get(k)[1];
 				bw.write(outputString);
-				bw.newLine();
+				
+				if(k != sortedScores.size() - 1){
+					bw.newLine();
+				}
 			}
-
-			System.out.println("Done");
+				
+				
+			System.out.println("Thank you for Playing");
 			bw.flush();
 			bw.close();
-		} catch (IOException e) {
+		}
+		
+			catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
-	}
+}

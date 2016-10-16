@@ -189,8 +189,10 @@ public class SetupClass extends BasicGameState {
 				
 				
 				if(timer.getTime()<= 0){ //loss state
-					sbg.getState(2).init(container, sbg);
-					sbg.enterState(2);
+					String userScore = Integer.toString(score);
+					endGame.finish(userScore);
+					//sbg.getState(2).init(container, sbg);
+					//sbg.enterState(2);
 				}
 
 				Input input = container.getInput();
