@@ -21,6 +21,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import GameObjects.Player;
 import GameObjects.GameObject;
+import GameObjects.MeteioriteGround;
 import GameObjects.Metiorite;
 import GameObjects.Timer;
 import endGame.endGame;
@@ -41,6 +42,7 @@ public class SetupClass extends BasicGameState {
 	public Block block;
 	public Floor floor;
 	public Metiorite met;
+	public MeteioriteGround metiorite;
 	
 	
 	public MapGrid map;
@@ -114,6 +116,8 @@ public class SetupClass extends BasicGameState {
 		grid = map.getGrid();
 		exit = new ExitTile(1, 2);
 		exit.init(container);
+		metiorite = new MeteioriteGround(1, 2);
+		
 		
 	}
 
@@ -151,6 +155,12 @@ public class SetupClass extends BasicGameState {
 					exit.yCoord = (i+1)*64;
 					exit.xCoord = (j+1)*64;
 					exit.render(container, g);
+				}
+				
+				if(grid[i][j] == 3){
+					metiorite.yCoord = (i+1)*64;
+					metiorite.xCoord = (j+1)*64;
+					block.render(container, g);
 				}
 			}
 		}
