@@ -15,8 +15,8 @@ public class Main extends StateBasedGame{
 		
 	}
 	
-	public static int windowWidth = 1920;
-	public static int windowHeight = 1080;
+	public static int windowWidth = 1000;
+	public static int windowHeight = 700;
 	
 	public static int width = 2000; //determines actual width of game
 	public static int height = 1400; //ditto with actual height of game
@@ -48,7 +48,7 @@ public class Main extends StateBasedGame{
 		AppGameContainer app;
 		sg = new ScalableGame((Game) new Main("Default Title"), width, height);
 		app = new AppGameContainer(sg);
-		app.setDisplayMode(windowWidth, windowHeight, true);
+		app.setDisplayMode(windowWidth, windowHeight, false);
 		app.setAlwaysRender(true);
 		app.start();
 
