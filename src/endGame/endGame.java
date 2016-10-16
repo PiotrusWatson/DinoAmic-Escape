@@ -1,7 +1,8 @@
 package endGame;
 
 import java.io.*;
-import java.util.*;
+import java.util.*; 
+import javax.swing.JOptionPane;
 
 public class endGame {
 
@@ -73,10 +74,18 @@ public class endGame {
 		}
 
 		// Allows the user to enter their username.
-		Scanner standardInput = new Scanner(System.in);
-		System.out.println("Enter your username: ");
-		String userName = standardInput.nextLine();
-		standardInput.close();
+		//Scanner standardInput = new Scanner(System.in);
+		//System.out.println("Enter your username: ");
+		//String userName = standardInput.nextLine();
+		//standardInput.close();
+		
+		String message = "Game Over. Your Score was " + userScore
+				+ ". Enter your name to store your high score.";
+		String userName = JOptionPane.showInputDialog(null,
+				message,
+				"Getting high score",
+				JOptionPane.QUESTION_MESSAGE);
+		
 
 		// the username and score are then appended onto the leaderboard
 		String[] appendArray = { userName, userScore };
