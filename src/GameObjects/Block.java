@@ -51,10 +51,6 @@ public class Block extends GameObject{
 	
 	public void destroyBlock(){
 		explode.draw(this.xCoord, this.yCoord);
-		if (explode.getFrame() == explode.getFrameCount() - 1)
-		{
-			
-		}
 	}
 
 }
