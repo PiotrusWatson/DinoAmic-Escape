@@ -1,9 +1,14 @@
+ w,205069
 hi,28149
-Jack Jarvis,17759
-bob,14637
-brodie,0
-null,0
-null,0
-null,0
-null,0
 DUDE MAN,28132
+Jack Jarvis,17759
+wow,14638
+bob,14637
+null,0
+null,0
+brodie,0
+fuck,0
+null,0
+null,0
+null,0
+ s,15472

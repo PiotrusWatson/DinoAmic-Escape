@@ -1,6 +1,6 @@
 package Game;
 
-
+import java.util.Random;
 import java.awt.event.InputEvent;
 
 import org.newdawn.slick.Animation;
@@ -57,6 +57,9 @@ public class SetupClass extends BasicGameState {
 
 	public Sound grunt;
 	public Sound levelEnd;
+	public Sound levelEnd1;
+	public Sound levelEnd2;
+	public Sound levelEnd3;
 	public Sound rockBreak;
 	public Sound gameOver;
 	public Sound pain;
@@ -131,6 +134,9 @@ public class SetupClass extends BasicGameState {
 		
 		grunt = new Sound("src/res/grunt.ogg");
 		levelEnd = new Sound("src/res/levelEnd.ogg");
+		levelEnd1 = new Sound("src/res/flush.ogg");
+		levelEnd2 = new Sound("src/res/wow.ogg");
+		levelEnd3 = new Sound("src/res/cool.ogg");
 		rockBreak = new Sound("src/res/meteorstrike.ogg");
 		gameOver = new Sound("src/res/gameover.ogg");
 		pain = new Sound("src/res/pain.ogg");
@@ -197,14 +203,17 @@ public class SetupClass extends BasicGameState {
 	public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException {
 		// win state
 				if (!run.playing())
-					run.loop();
+					run.loop(1, 100);
 				if (player.xCoord == exit.xCoord && player.yCoord == exit.yCoord){
 					int time = timer.getTime();
 					/*String time2 = String(time);
 					endGame.finish(time2);*/
 					score += time;
 					MapGrid.level += 1;
-					levelEnd.play();
+					Random rand = new Random();
+					int randNum = rand.nextInt(3);
+					levelEnd.play(1, 400);
+				
 					//Main.updateSize(40);
 					sbg.getState(sbg.getCurrentStateID()).init(container, sbg);
 					sbg.enterState(sbg.getCurrentStateID());
