@@ -1,6 +1,7 @@
 package endGame;
 import org.lwjgl.input.Mouse;
-import java.awt.Font;
+//import java.awt.Font;
+//import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -11,7 +12,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class GameOver extends BasicGameState{
-	private static Font font = new Font("serif", Font.BOLD,14);
+	//private static org.newdawn.slick.Font font = new org.newdawn.slick.Font("serif", Font.BOLD,14);
 	public int mouseXPos;
 	public int mouseYPos;
 	public static int id = 2;
@@ -22,7 +23,7 @@ public class GameOver extends BasicGameState{
 	@Override
 	public void init(GameContainer container, StateBasedGame arg1) throws SlickException {
 		banner = new Image("src/res/banner.png");
-		play = new TextField(container, (org.newdawn.slick.Font) font , 64, 3*64, 64, 500);
+		//play = new TextField(container, font , 64, 3*64, 64, 500);
 		
 	}
 

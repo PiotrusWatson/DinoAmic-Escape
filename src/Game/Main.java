@@ -60,7 +60,7 @@ public class Main extends StateBasedGame{
 	public void initStatesList(GameContainer container) throws SlickException {
 		addState(new Menu());
 		addState(new SetupClass());
-		addState(new GameOver());
+		//saddState(new GameOver());
 		
 	}
 
