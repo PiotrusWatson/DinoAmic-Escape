@@ -18,6 +18,7 @@ public class Menu extends BasicGameState{
 	public static int id = 0;
 	Image banner;
 	Image play2;
+	Image dino;
 	//TrueTypeFont ttf;
 	int windowWidth = Main.width;
 	int windowHeight = Main.height;
@@ -28,6 +29,7 @@ public class Menu extends BasicGameState{
 		banner = new Image("src/res/banner.png");
 		//play = new Image("src/res/playButton.png");
 		play2 = new Image("src/res/playbuttonclear.png");
+		dino = new Image ("src/res/DDStationary.png");
 		//font = new Font("Comic Sans", Font.BOLD, 60);
 		//ttf = new TrueTypeFont(java.awt.Font.SANS_SERIF, true);
 		
@@ -53,6 +55,7 @@ public class Menu extends BasicGameState{
 		//ttf.drawString(32.0f, 32.0f, "PLAY", Color.white);
 		g.setColor(Color.white);
 		play2.draw(windowWidth/4, windowHeight/3);
+		dino.draw(windowWidth/2, 64);
 		//g.drawString("Play", windowWidth/4, windowHeight/3);
 	}
 
