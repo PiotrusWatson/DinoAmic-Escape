@@ -50,7 +50,7 @@ public class SetupClass extends BasicGameState {
 	
 	public MapGrid map;
 	public int[][] grid;
-	public static int fps = 1000;
+	public static int fps = 60;
 	public boolean reduced = false;
 	public ExitTile exit;
 	

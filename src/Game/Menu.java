@@ -26,6 +26,7 @@ public class Menu extends BasicGameState{
 	Image play2;
 	Image dino;
 	Image quit;
+	Image score;
 	//TrueTypeFont ttf;
 	int windowWidth = Main.width;
 	int windowHeight = Main.height;
@@ -40,6 +41,7 @@ public class Menu extends BasicGameState{
 		play2 = new Image("src/res/playbuttonclear.png");
 		dino = new Image ("src/res/DDStationary.png");
 		quit = new Image ("src/res/quitpic.png");
+		score = new Image ("src/res/scorepic.png");
 	    String line = "";
 		BufferedReader br;
 		
@@ -109,6 +111,7 @@ public class Menu extends BasicGameState{
 		play2.draw(windowWidth/4, windowHeight/3);
 		quit.draw(windowWidth/4, (windowHeight/2)+64);
 		dino.draw(windowWidth/2, 64);
+		score.draw(windowWidth-600, (windowHeight/4)-250);
 		
 		g.drawString(everything, windowWidth-512, windowHeight/4);
 	}

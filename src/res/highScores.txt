@@ -1,17 +1,18 @@
-w,205069
-hi,28149
+Adam,779219
+Adam,203726
+Adam,195912
+Adam,139738
+poop,73603
+Adam,73510
+null,67038
+Sean,44917
+null,39302
+null,28634
 DUDE MAN,28132
-Jack Jarvis,17759
- s,15472
-wow,14638
-bob,14637
-asdasdasd,1795
-brodie,0
-fuck,0
+mdb,15779
+null,10165
+null,7478
+null,6340
+daniel,4285
 null,0
-null,0
-null,0
-null,0
-gg,0
- ahdka,0
 null,0
